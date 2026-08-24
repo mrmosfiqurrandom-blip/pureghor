@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="100%" height="100%">
+  <rect width="160" height="160" rx="36" fill="#F5FBF2" />
+  <g transform="translate(6, 4)">
+    <!-- Sprout leaf on the left of P -->
+    <path d="M 46 72 C 32 66 12 70 2 82 C 1 65 14 46 36 44 C 54 42 52 64 46 72 Z" fill="#5EB809" />
+    <path d="M 12 76 C 26 66 38 60 46 66" stroke="#489402" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.6"/>
+
+    <!-- Main 'P' Body in Deep Forest Green -->
+    <path d="M 52 26 L 90 26 C 122 26 142 42 142 70 C 142 98 122 114 90 114 L 69 114 L 69 146 L 52 146 Z" fill="#004F18" />
+    
+    <!-- Negative Space Inside P Loop shaped like a natural leaf -->
+    <path d="M 69 43 L 88 43 C 104 43 124 53 124 70 C 124 87 104 97 88 97 L 69 97 Z" fill="#F5FBF2" />
+  </g>
+</svg>

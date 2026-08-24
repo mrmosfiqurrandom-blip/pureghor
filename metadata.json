@@ -1,0 +1,7 @@
+{
+  "name": "PureGhor - Organic & Pure E-Commerce",
+  "description": "Production-ready, responsive Bangla-first organic food e-commerce platform with dynamic branding wizard, Firestore database, Cloud Storage, and full admin dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

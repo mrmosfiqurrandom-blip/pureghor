@@ -1,0 +1,139 @@
+{
+  "entities": {
+    "Setting": {
+      "title": "Setting",
+      "description": "Store global configuration and branding settings",
+      "type": "object",
+      "properties": {
+        "storeNameBn": { "type": "string" },
+        "storeNameEn": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "addressBn": { "type": "string" }
+      },
+      "required": ["storeNameBn", "phone"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Product category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nameBn": { "type": "string" },
+        "nameEn": { "type": "string" },
+        "slug": { "type": "string" },
+        "imageUrl": { "type": "string" }
+      },
+      "required": ["id", "nameBn", "slug"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Product details and stock information",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nameBn": { "type": "string" },
+        "slug": { "type": "string" },
+        "price": { "type": "number" },
+        "stock": { "type": "number" },
+        "isPublished": { "type": "boolean" }
+      },
+      "required": ["id", "nameBn", "slug", "price"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer purchase orders",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "orderNumber": { "type": "string" },
+        "grandTotal": { "type": "number" },
+        "orderStatus": { "type": "string" }
+      },
+      "required": ["id", "orderNumber", "grandTotal"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Product ratings and reviews",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "productId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "rating": { "type": "number" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "productId", "customerName", "rating"]
+    },
+    "Coupon": {
+      "title": "Coupon",
+      "description": "Discount vouchers and codes",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "discountType": { "type": "string" },
+        "value": { "type": "number" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["id", "code", "value"]
+    },
+    "Banner": {
+      "title": "Banner",
+      "description": "Promotional banners",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["id", "imageUrl"]
+    },
+    "FAQ": {
+      "title": "FAQ",
+      "description": "Store FAQs",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "questionBn": { "type": "string" },
+        "answerBn": { "type": "string" }
+      },
+      "required": ["id", "questionBn", "answerBn"]
+    }
+  },
+  "firestore": {
+    "/settings/{settingId}": {
+      "schema": "Setting",
+      "description": "Global store settings"
+    },
+    "/categories/{categoryId}": {
+      "schema": "Category",
+      "description": "Collection of product categories"
+    },
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Collection of inventory items"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Store orders collection"
+    },
+    "/reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "Customer feedback and reviews"
+    },
+    "/coupons/{couponId}": {
+      "schema": "Coupon",
+      "description": "Promotional coupon codes"
+    },
+    "/banners/{bannerId}": {
+      "schema": "Banner",
+      "description": "Hero and promotional banners"
+    },
+    "/faqs/{faqId}": {
+      "schema": "FAQ",
+      "description": "Frequently asked questions"
+    }
+  }
+}

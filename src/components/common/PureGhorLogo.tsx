@@ -1,0 +1,177 @@
+import React from 'react';
+
+interface PureGhorLogoProps {
+  className?: string;
+  height?: number | string;
+  variant?: 'full' | 'icon-only' | 'horizontal';
+  showSubtitle?: boolean;
+  isDark?: boolean;
+}
+
+export const PureGhorLogo: React.FC<PureGhorLogoProps> = ({
+  className = '',
+  height = 42,
+  variant = 'full',
+  showSubtitle = false,
+  isDark = false,
+}) => {
+  const deepGreen = isDark ? '#FFFFFF' : '#004F18';
+  const leafGreen = '#5EB809';
+  const leafStroke = '#489402';
+  const innerBg = isDark ? '#123B2A' : '#FFFFFF';
+
+  if (variant === 'icon-only') {
+    return (
+      <svg
+        viewBox="0 0 160 160"
+        style={{ height: typeof height === 'number' ? `${height}px` : height }}
+        className={`w-auto shrink-0 select-none ${className}`}
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="PureGhor Icon"
+      >
+        <g transform="translate(6, 4)">
+          {/* Sprout leaf on the left of P */}
+          <path
+            d="M 46 72 C 32 66 12 70 2 82 C 1 65 14 46 36 44 C 54 42 52 64 46 72 Z"
+            fill={leafGreen}
+          />
+          <path
+            d="M 12 76 C 26 66 38 60 46 66"
+            stroke={leafStroke}
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            fill="none"
+            opacity="0.6"
+          />
+
+          {/* Main 'P' Body */}
+          <path
+            d="M 52 26 L 90 26 C 122 26 142 42 142 70 C 142 98 122 114 90 114 L 69 114 L 69 146 L 52 146 Z"
+            fill={deepGreen}
+          />
+
+          {/* Negative Space Leaf */}
+          <path
+            d="M 69 43 L 88 43 C 104 43 124 53 124 70 C 124 87 104 97 88 97 L 69 97 Z"
+            fill={innerBg}
+          />
+        </g>
+      </svg>
+    );
+  }
+
+  return (
+    <div className={`inline-flex flex-col items-start select-none ${className}`}>
+      <svg
+        viewBox="0 0 620 180"
+        style={{ height: typeof height === 'number' ? `${height}px` : height }}
+        className="w-auto h-auto shrink-0"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="PureGhor Logo"
+      >
+        {/* Left Icon */}
+        <g transform="translate(15, 25)">
+          {/* Sprout leaf on the left of P */}
+          <path
+            d="M 46 72 C 32 66 12 70 2 82 C 1 65 14 46 36 44 C 54 42 52 64 46 72 Z"
+            fill={leafGreen}
+          />
+          <path
+            d="M 12 76 C 26 66 38 60 46 66"
+            stroke={leafStroke}
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            fill="none"
+            opacity="0.6"
+          />
+
+          {/* Main 'P' Body in Deep Green */}
+          <path
+            d="M 52 26 L 90 26 C 122 26 142 42 142 70 C 142 98 122 114 90 114 L 69 114 L 69 146 L 52 146 Z"
+            fill={deepGreen}
+          />
+
+          {/* Negative Space Inside P Loop */}
+          <path
+            d="M 69 43 L 88 43 C 104 43 124 53 124 70 C 124 87 104 97 88 97 L 69 97 Z"
+            fill={innerBg}
+          />
+        </g>
+
+        {/* Wordmark: PureGhor */}
+        <g transform="translate(180, 42)">
+          {/* 'P' in Pure (Deep Green) */}
+          <path
+            d="M 10 24 L 38 24 C 58 24 70 34 70 51 C 70 68 58 78 38 78 L 24 78 L 24 105 L 10 105 Z M 24 37 L 24 65 L 36 65 C 47 65 55 59 55 51 C 55 43 47 37 36 37 Z"
+            fill={deepGreen}
+          />
+
+          {/* 'u' in Pure + Sprout Leaf on top */}
+          <path
+            d="M 72 40 C 65 24 75 8 92 2 C 108 4 116 16 118 28 C 106 38 88 44 72 40 Z"
+            fill={leafGreen}
+          />
+          <path
+            d="M 78 33 C 88 24 98 18 108 14"
+            stroke={leafStroke}
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            fill="none"
+            opacity="0.6"
+          />
+
+          <path
+            d="M 77 46 L 90 46 L 90 85 C 90 92 94 96 102 96 C 110 96 115 91 115 84 L 115 46 L 129 46 L 129 105 L 116 105 L 116 97 C 112 103 104 107 95 107 C 82 107 77 98 77 86 Z"
+            fill={deepGreen}
+          />
+
+          {/* 'r' in Pure */}
+          <path
+            d="M 140 46 L 153 46 L 153 56 C 158 49 166 45 175 45 L 176 59 C 166 58 154 64 154 75 L 154 105 L 140 105 Z"
+            fill={deepGreen}
+          />
+
+          {/* 'e' in Pure */}
+          <path
+            d="M 183 75 C 183 56 197 45 214 45 C 230 45 242 56 242 75 L 242 78 L 197 78 C 198 90 205 97 217 97 C 224 97 231 94 236 89 L 243 98 C 236 104 227 107 215 107 C 196 107 183 94 183 75 Z M 214 55 C 205 55 199 61 197 70 L 229 70 C 228 62 222 55 214 55 Z"
+            fill={deepGreen}
+          />
+
+          {/* 'G' in Ghor (Vibrant Fresh Green) */}
+          <path
+            d="M 288 75 C 288 56 303 44 324 44 C 339 44 350 51 356 61 L 344 69 C 340 62 333 57 324 57 C 312 57 302 65 302 75 C 302 86 312 94 324 94 C 333 94 340 89 344 84 L 344 77 L 324 77 L 324 66 L 358 66 L 358 89 C 350 100 338 107 323 107 C 302 107 288 94 288 75 Z"
+            fill={leafGreen}
+          />
+
+          {/* 'h' in Ghor */}
+          <path
+            d="M 369 24 L 383 24 L 383 55 C 388 48 396 45 406 45 C 419 45 427 54 427 68 L 427 105 L 413 105 L 413 71 C 413 63 408 57 400 57 C 392 57 383 63 383 73 L 383 105 L 369 105 Z"
+            fill={leafGreen}
+          />
+
+          {/* 'o' in Ghor */}
+          <path
+            d="M 436 75 C 436 56 450 45 466 45 C 483 45 497 56 497 75 C 497 94 483 107 466 107 C 450 107 436 94 436 75 Z M 483 75 C 483 63 475 56 466 56 C 457 56 449 63 449 75 C 449 87 457 95 466 95 C 475 95 483 87 483 75 Z"
+            fill={leafGreen}
+          />
+
+          {/* 'r' in Ghor */}
+          <path
+            d="M 506 46 L 519 46 L 519 56 C 524 49 532 45 541 45 L 542 59 C 532 58 520 64 520 75 L 520 105 L 506 105 Z"
+            fill={leafGreen}
+          />
+        </g>
+      </svg>
+
+      {showSubtitle && (
+        <span
+          className={`text-[11px] font-bold tracking-wider uppercase font-['Hind_Siliguri',sans-serif] -mt-1 ml-1 ${
+            isDark ? 'text-[#E8F8D8]/80' : 'text-[#004F18]/80'
+          }`}
+        >
+          ১০০% খাঁটি ও প্রাকৃতিক খাবার
+        </span>
+      )}
+    </div>
+  );
+};
