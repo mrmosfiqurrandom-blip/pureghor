@@ -122,19 +122,19 @@ export const AdminProducts: React.FC = () => {
 
         <button
           onClick={handleAddNew}
-          className="bg-[#1F6B45] hover:bg-[#123B2A] text-white px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 shadow-xs cursor-pointer"
+          className="bg-[#004F18] hover:bg-[#063B14] text-white px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 shadow-xs cursor-pointer transition-colors"
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="w-4 h-4 text-[#5EB809]" />
           <span>নতুন পণ্য যুক্ত করুন</span>
         </button>
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-3xl border border-[#E5E0D5] overflow-hidden shadow-xs">
+      <div className="bg-white rounded-3xl border border-[#DCECD5] overflow-hidden shadow-xs">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-['Hind_Siliguri']">
             <thead>
-              <tr className="bg-[#FAF6EE] text-gray-500 uppercase tracking-wider font-bold border-b border-[#E5E0D5]">
+              <tr className="bg-[#F5FBF2] text-[#102B16]/70 uppercase tracking-wider font-bold border-b border-[#DCECD5]">
                 <th className="p-4">ছবি</th>
                 <th className="p-4">নাম ও SKU</th>
                 <th className="p-4">ক্যাটাগরি</th>
@@ -144,15 +144,15 @@ export const AdminProducts: React.FC = () => {
                 <th className="p-4 text-right">অ্যাকশন</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#E5E0D5]">
+            <tbody className="divide-y divide-[#DCECD5]">
               {filtered.map((prod) => {
                 const cat = categories.find((c) => c.id === prod.categoryId);
                 const isLow = prod.stock <= prod.lowStockThreshold;
 
                 return (
-                  <tr key={prod.id} className="hover:bg-[#FAF6EE]/40 transition-colors">
+                  <tr key={prod.id} className="hover:bg-[#F5FBF2]/50 transition-colors">
                     <td className="p-4">
-                      <div className="w-12 h-12 rounded-xl overflow-hidden bg-[#FAF6EE] border border-[#E5E0D5]">
+                      <div className="w-12 h-12 rounded-xl overflow-hidden bg-[#F5FBF2] border border-[#DCECD5]">
                         {prod.images?.[0]?.url ? (
                           <img
                             src={prod.images[0].url}
@@ -160,19 +160,19 @@ export const AdminProducts: React.FC = () => {
                             className="w-full h-full object-cover"
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center text-gray-300 font-bold">
+                          <div className="w-full h-full flex items-center justify-center text-[#004F18]/40 font-bold">
                             PG
                           </div>
                         )}
                       </div>
                     </td>
                     <td className="p-4">
-                      <div className="font-bold text-[#123B2A] text-sm">{prod.nameBn}</div>
+                      <div className="font-bold text-[#004F18] text-sm">{prod.nameBn}</div>
                       <div className="text-[11px] text-gray-400 font-mono">SKU: {prod.sku}</div>
                     </td>
                     <td className="p-4 font-medium text-gray-600">{cat?.nameBn || '—'}</td>
                     <td className="p-4">
-                      <div className="font-black text-[#1F6B45]">৳{prod.salePrice || prod.price}</div>
+                      <div className="font-black text-[#004F18]">৳{prod.salePrice || prod.price}</div>
                       {prod.salePrice && (
                         <span className="text-[10px] text-gray-400 line-through">৳{prod.price}</span>
                       )}
@@ -182,7 +182,7 @@ export const AdminProducts: React.FC = () => {
                         className={`px-2.5 py-1 rounded-full text-[11px] font-bold ${
                           isLow
                             ? 'bg-red-50 text-red-600 border border-red-200'
-                            : 'bg-emerald-50 text-emerald-700'
+                            : 'bg-[#E8F8D8] text-[#004F18] border border-[#5EB809]/30'
                         }`}
                       >
                         {prod.stock} টি
@@ -190,8 +190,8 @@ export const AdminProducts: React.FC = () => {
                     </td>
                     <td className="p-4">
                       {prod.isPublished ? (
-                        <span className="text-emerald-600 font-bold flex items-center gap-1">
-                          <CheckCircle className="w-3.5 h-3.5" /> সক্রিয়
+                        <span className="text-[#004F18] font-bold flex items-center gap-1">
+                          <CheckCircle className="w-3.5 h-3.5 text-[#5EB809]" /> সক্রিয়
                         </span>
                       ) : (
                         <span className="text-gray-400 font-bold flex items-center gap-1">
@@ -202,14 +202,14 @@ export const AdminProducts: React.FC = () => {
                     <td className="p-4 text-right space-x-1">
                       <button
                         onClick={() => setEditingProduct(prod)}
-                        className="p-2 text-[#1F6B45] hover:bg-[#FAF6EE] rounded-lg cursor-pointer"
+                        className="p-2 text-[#004F18] hover:bg-[#F5FBF2] rounded-lg cursor-pointer transition-colors"
                         title="এডিট"
                       >
                         <Edit2 className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleDelete(prod.id)}
-                        className="p-2 text-red-500 hover:bg-red-50 rounded-lg cursor-pointer"
+                        className="p-2 text-red-500 hover:bg-red-50 rounded-lg cursor-pointer transition-colors"
                         title="ডিলিট"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -453,7 +453,7 @@ export const AdminProducts: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-6 py-2.5 rounded-xl bg-[#1F6B45] text-white text-xs font-bold hover:bg-[#123B2A] transition-colors cursor-pointer"
+                  className="px-6 py-2.5 rounded-xl bg-[#004F18] text-white text-xs font-bold hover:bg-[#063B14] transition-colors cursor-pointer"
                 >
                   {loading ? 'সংরক্ষিত হচ্ছে...' : 'পণ্য সংরক্ষণ করুন'}
                 </button>

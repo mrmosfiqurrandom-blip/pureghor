@@ -54,10 +54,10 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onNavigate, initialCategoryS
     <div className="py-8 md:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Page Header */}
       <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-black text-[#123B2A] font-['Hind_Siliguri']">
+        <h1 className="text-2xl sm:text-3xl font-black text-[#004F18] font-['Hind_Siliguri']">
           সকল খাঁটি ও প্রাকৃতিক খাদ্যপণ্য
         </h1>
-        <p className="text-sm text-[#26312B]/70 mt-1 font-['Hind_Siliguri']">
+        <p className="text-sm text-[#102B16]/70 mt-1 font-['Hind_Siliguri']">
           মোট {filteredProducts.length} টি পণ্য পাওয়া গেছে
         </p>
       </div>
@@ -66,8 +66,8 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onNavigate, initialCategoryS
         {/* Sidebar Filters */}
         <div className="space-y-6">
           {/* Search box */}
-          <div className="bg-white p-4 rounded-2xl border border-[#E5E0D5]">
-            <label className="block text-xs font-bold text-[#123B2A] uppercase mb-2">
+          <div className="bg-white p-4 rounded-2xl border border-[#DCECD5] shadow-xs">
+            <label className="block text-xs font-bold text-[#004F18] uppercase mb-2">
               পণ্য খুঁজুন
             </label>
             <div className="relative">
@@ -76,24 +76,24 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onNavigate, initialCategoryS
                 placeholder="যেমন: মধু, ঘি, তেল..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl py-2 pl-9 pr-3 text-sm outline-none focus:border-[#1F6B45]"
+                className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl py-2 pl-9 pr-3 text-sm outline-none focus:border-[#004F18]"
               />
-              <Search className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-[#004F18]/60 absolute left-3 top-1/2 -translate-y-1/2" />
             </div>
           </div>
 
           {/* Category Filter List */}
-          <div className="bg-white p-4 rounded-2xl border border-[#E5E0D5]">
-            <h3 className="text-xs font-bold text-[#123B2A] uppercase mb-3 font-['Hind_Siliguri']">
+          <div className="bg-white p-4 rounded-2xl border border-[#DCECD5] shadow-xs">
+            <h3 className="text-xs font-bold text-[#004F18] uppercase mb-3 font-['Hind_Siliguri']">
               ক্যাটাগরি সমূহ
             </h3>
             <div className="space-y-1 text-sm font-medium">
               <button
                 onClick={() => setSelectedCategory('all')}
-                className={`w-full text-left px-3 py-2 rounded-xl flex items-center justify-between transition-colors ${
+                className={`w-full text-left px-3 py-2 rounded-xl flex items-center justify-between transition-colors cursor-pointer ${
                   selectedCategory === 'all'
-                    ? 'bg-[#1F6B45] text-white font-bold'
-                    : 'text-[#26312B] hover:bg-[#FFF8EA]'
+                    ? 'bg-[#004F18] text-white font-bold'
+                    : 'text-[#102B16] hover:bg-[#F5FBF2]'
                 }`}
               >
                 <span>সকল পণ্য</span>
@@ -107,10 +107,10 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onNavigate, initialCategoryS
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.slug)}
-                    className={`w-full text-left px-3 py-2 rounded-xl flex items-center justify-between transition-colors ${
+                    className={`w-full text-left px-3 py-2 rounded-xl flex items-center justify-between transition-colors cursor-pointer ${
                       isSelected
-                        ? 'bg-[#1F6B45] text-white font-bold'
-                        : 'text-[#26312B] hover:bg-[#FFF8EA]'
+                        ? 'bg-[#004F18] text-white font-bold'
+                        : 'text-[#102B16] hover:bg-[#F5FBF2]'
                     }`}
                   >
                     <span className="truncate">{cat.nameBn}</span>
@@ -122,15 +122,15 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onNavigate, initialCategoryS
           </div>
 
           {/* Toggles: In stock & Offers */}
-          <div className="bg-white p-4 rounded-2xl border border-[#E5E0D5] space-y-3 text-sm">
+          <div className="bg-white p-4 rounded-2xl border border-[#DCECD5] shadow-xs space-y-3 text-sm">
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
                 checked={inStockOnly}
                 onChange={(e) => setInStockOnly(e.target.checked)}
-                className="w-4 h-4 rounded text-[#1F6B45] focus:ring-[#1F6B45]"
+                className="w-4 h-4 rounded text-[#004F18] focus:ring-[#004F18]"
               />
-              <span className="font-semibold text-[#123B2A]">কেবলমাত্র ইন-স্টক পণ্য</span>
+              <span className="font-semibold text-[#004F18]">কেবলমাত্র ইন-স্টক পণ্য</span>
             </label>
 
             <label className="flex items-center gap-3 cursor-pointer">
@@ -138,9 +138,9 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onNavigate, initialCategoryS
                 type="checkbox"
                 checked={offersOnly}
                 onChange={(e) => setOffersOnly(e.target.checked)}
-                className="w-4 h-4 rounded text-[#1F6B45] focus:ring-[#1F6B45]"
+                className="w-4 h-4 rounded text-[#004F18] focus:ring-[#004F18]"
               />
-              <span className="font-semibold text-[#123B2A]">কেবলমাত্র বিশেষ ছাড়ের পণ্য</span>
+              <span className="font-semibold text-[#004F18]">কেবলমাত্র বিশেষ ছাড়ের পণ্য</span>
             </label>
           </div>
         </div>
@@ -148,9 +148,9 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onNavigate, initialCategoryS
         {/* Product Grid Area */}
         <div className="lg:col-span-3">
           {/* Top Bar Sort */}
-          <div className="bg-white p-3 sm:p-4 rounded-2xl border border-[#E5E0D5] flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
-            <div className="text-xs sm:text-sm font-bold text-[#123B2A]">
-              প্রদর্শন করা হচ্ছে: <span className="text-[#1F6B45]">{filteredProducts.length}</span> টি পণ্য
+          <div className="bg-white p-3 sm:p-4 rounded-2xl border border-[#DCECD5] shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+            <div className="text-xs sm:text-sm font-bold text-[#004F18]">
+              প্রদর্শন করা হচ্ছে: <span className="text-[#5EB809] font-black">{filteredProducts.length}</span> টি পণ্য
             </div>
 
             <div className="flex items-center gap-2 self-end sm:self-auto">
@@ -158,7 +158,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onNavigate, initialCategoryS
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="bg-[#FAF6EE] border border-[#E5E0D5] text-xs font-bold rounded-xl py-2 px-3 outline-none focus:border-[#1F6B45]"
+                className="bg-[#F5FBF2] border border-[#DCECD5] text-xs font-bold rounded-xl py-2 px-3 outline-none focus:border-[#004F18]"
               >
                 <option value="featured">ফিচার্ড / জনপ্রিয়</option>
                 <option value="price-asc">দাম: কম থেকে বেশি</option>
@@ -176,11 +176,11 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onNavigate, initialCategoryS
               ))}
             </div>
           ) : (
-            <div className="bg-white rounded-3xl p-12 text-center border border-[#E5E0D5]">
-              <h3 className="text-lg font-bold text-[#123B2A] mb-2 font-['Hind_Siliguri']">
+            <div className="bg-white rounded-3xl p-12 text-center border border-[#DCECD5] shadow-xs">
+              <h3 className="text-lg font-bold text-[#004F18] mb-2 font-['Hind_Siliguri']">
                 কোনো পণ্য পাওয়া যায়নি
               </h3>
-              <p className="text-sm text-[#26312B]/70 mb-4">
+              <p className="text-sm text-[#102B16]/70 mb-4">
                 অনুগ্রহ করে ফিল্টার পরিবর্তন করুন বা অন্য কোনো কীওয়ার্ড দিয়ে সার্চ করুন।
               </p>
               <button
@@ -190,7 +190,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ onNavigate, initialCategoryS
                   setInStockOnly(false);
                   setOffersOnly(false);
                 }}
-                className="bg-[#1F6B45] text-white px-5 py-2.5 rounded-full text-xs font-bold hover:bg-[#123B2A]"
+                className="bg-[#004F18] hover:bg-[#063B14] text-white px-5 py-2.5 rounded-full text-xs font-bold cursor-pointer transition-colors"
               >
                 ফিল্টার রিসেট করুন
               </button>

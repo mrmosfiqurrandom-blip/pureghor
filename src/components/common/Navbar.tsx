@@ -83,7 +83,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
             onClick={() => onNavigate('/')}
             className="flex items-center cursor-pointer select-none py-1 group"
           >
-            {settings.logoUrl && settings.logoUrl !== '/logo.svg' ? (
+            {settings.logoUrl && settings.logoUrl !== '/logo.svg' && !settings.logoUrl.includes('1GdN6VsN-EgeAHZ-7MVPfsjsJ9wx7ukjM') ? (
               <img
                 src={settings.logoUrl}
                 alt={settings.storeNameBn}

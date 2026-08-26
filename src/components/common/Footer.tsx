@@ -29,7 +29,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           
           {/* Brand & About */}
           <div className="space-y-4">
-            {settings.logoUrl && settings.logoUrl !== '/logo.svg' ? (
+            {settings.logoUrl && settings.logoUrl !== '/logo.svg' && !settings.logoUrl.includes('1GdN6VsN-EgeAHZ-7MVPfsjsJ9wx7ukjM') ? (
               <img
                 src={settings.logoUrl}
                 alt={settings.storeNameBn}

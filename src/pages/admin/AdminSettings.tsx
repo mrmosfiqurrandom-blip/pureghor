@@ -48,25 +48,25 @@ export const AdminSettings: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto space-y-6 font-['Hind_Siliguri']">
-      <div className="bg-white p-6 rounded-3xl border border-[#E5E0D5] flex items-center justify-between shadow-2xs">
+      <div className="bg-white p-6 rounded-3xl border border-[#DCECD5] flex items-center justify-between shadow-2xs">
         <div>
-          <h2 className="text-lg font-bold text-[#123B2A]">স্টোর সেটিংস ও কনফিগারেশন</h2>
+          <h2 className="text-lg font-bold text-[#004F18]">স্টোর সেটিংস ও কনফিগারেশন</h2>
           <p className="text-xs text-gray-500">ডেলিভারি চার্জ, কন্টাক্ট ইনফো এবং পেমেন্ট সেটিংস</p>
         </div>
       </div>
 
       {saved && (
-        <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl text-xs font-bold flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4" />
+        <div className="p-4 bg-[#E8F8D8] border border-[#5EB809]/40 text-[#004F18] rounded-2xl text-xs font-bold flex items-center gap-2">
+          <CheckCircle2 className="w-4 h-4 text-[#5EB809]" />
           <span>সেটিংস সফলভাবে সংরক্ষিত হয়েছে!</span>
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-8 rounded-3xl border border-[#E5E0D5] shadow-xs space-y-6">
+      <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-8 rounded-3xl border border-[#DCECD5] shadow-xs space-y-6">
         {/* Basic store info */}
         <div>
-          <h3 className="font-bold text-sm text-[#123B2A] mb-3 flex items-center gap-2 border-b border-[#E5E0D5] pb-2">
-            <Store className="w-4 h-4 text-[#1F6B45]" />
+          <h3 className="font-bold text-sm text-[#004F18] mb-3 flex items-center gap-2 border-b border-[#DCECD5] pb-2">
+            <Store className="w-4 h-4 text-[#5EB809]" />
             <span>বেসিক তথ্য</span>
           </h3>
 
@@ -77,7 +77,7 @@ export const AdminSettings: React.FC = () => {
                 type="text"
                 value={storeNameBn}
                 onChange={(e) => setStoreNameBn(e.target.value)}
-                className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-2.5 outline-none"
+                className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-2.5 outline-none focus:border-[#004F18]"
               />
             </div>
             <div>
@@ -86,7 +86,7 @@ export const AdminSettings: React.FC = () => {
                 type="text"
                 value={taglineBn}
                 onChange={(e) => setTaglineBn(e.target.value)}
-                className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-2.5 outline-none"
+                className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-2.5 outline-none focus:border-[#004F18]"
               />
             </div>
           </div>
@@ -94,8 +94,8 @@ export const AdminSettings: React.FC = () => {
 
         {/* Contact info */}
         <div>
-          <h3 className="font-bold text-sm text-[#123B2A] mb-3 flex items-center gap-2 border-b border-[#E5E0D5] pb-2">
-            <Phone className="w-4 h-4 text-[#1F6B45]" />
+          <h3 className="font-bold text-sm text-[#004F18] mb-3 flex items-center gap-2 border-b border-[#DCECD5] pb-2">
+            <Phone className="w-4 h-4 text-[#5EB809]" />
             <span>যোগাযোগ ও সাপোর্ট</span>
           </h3>
 
@@ -106,7 +106,7 @@ export const AdminSettings: React.FC = () => {
                 type="text"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-2.5 outline-none"
+                className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-2.5 outline-none focus:border-[#004F18]"
               />
             </div>
             <div>
@@ -115,7 +115,7 @@ export const AdminSettings: React.FC = () => {
                 type="text"
                 value={whatsapp}
                 onChange={(e) => setWhatsapp(e.target.value)}
-                className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-2.5 outline-none"
+                className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-2.5 outline-none focus:border-[#004F18]"
               />
             </div>
             <div>
@@ -124,7 +124,7 @@ export const AdminSettings: React.FC = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-2.5 outline-none"
+                className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-2.5 outline-none focus:border-[#004F18]"
               />
             </div>
           </div>
@@ -132,8 +132,8 @@ export const AdminSettings: React.FC = () => {
 
         {/* Delivery Charges */}
         <div>
-          <h3 className="font-bold text-sm text-[#123B2A] mb-3 flex items-center gap-2 border-b border-[#E5E0D5] pb-2">
-            <Truck className="w-4 h-4 text-[#1F6B45]" />
+          <h3 className="font-bold text-sm text-[#004F18] mb-3 flex items-center gap-2 border-b border-[#DCECD5] pb-2">
+            <Truck className="w-4 h-4 text-[#5EB809]" />
             <span>ডেলিভারি চার্জ কনফিগারেশন</span>
           </h3>
 
@@ -144,7 +144,7 @@ export const AdminSettings: React.FC = () => {
                 type="number"
                 value={deliverySylhet}
                 onChange={(e) => setDeliverySylhet(Number(e.target.value))}
-                className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-2.5 outline-none"
+                className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-2.5 outline-none focus:border-[#004F18]"
               />
             </div>
             <div>
@@ -153,7 +153,7 @@ export const AdminSettings: React.FC = () => {
                 type="number"
                 value={deliveryDhaka}
                 onChange={(e) => setDeliveryDhaka(Number(e.target.value))}
-                className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-2.5 outline-none"
+                className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-2.5 outline-none focus:border-[#004F18]"
               />
             </div>
             <div>
@@ -162,7 +162,7 @@ export const AdminSettings: React.FC = () => {
                 type="number"
                 value={deliveryOutside}
                 onChange={(e) => setDeliveryOutside(Number(e.target.value))}
-                className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-2.5 outline-none"
+                className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-2.5 outline-none focus:border-[#004F18]"
               />
             </div>
             <div>
@@ -171,19 +171,19 @@ export const AdminSettings: React.FC = () => {
                 type="number"
                 value={freeShippingThreshold}
                 onChange={(e) => setFreeShippingThreshold(Number(e.target.value))}
-                className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-2.5 outline-none"
+                className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-2.5 outline-none focus:border-[#004F18]"
               />
             </div>
           </div>
         </div>
 
-        <div className="flex justify-end pt-4 border-t border-[#E5E0D5]">
+        <div className="flex justify-end pt-4 border-t border-[#DCECD5]">
           <button
             type="submit"
             disabled={saving}
-            className="bg-[#1F6B45] hover:bg-[#123B2A] text-white px-8 py-3 rounded-xl font-bold text-xs flex items-center gap-2 cursor-pointer shadow-md"
+            className="bg-[#004F18] hover:bg-[#063B14] text-white px-8 py-3 rounded-xl font-bold text-xs flex items-center gap-2 cursor-pointer shadow-md transition-colors"
           >
-            <Save className="w-4 h-4" />
+            <Save className="w-4 h-4 text-[#5EB809]" />
             <span>{saving ? 'সংরক্ষিত হচ্ছে...' : 'সেটিংস আপডেট করুন'}</span>
           </button>
         </div>

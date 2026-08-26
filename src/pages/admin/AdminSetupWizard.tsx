@@ -33,19 +33,19 @@ export const AdminSetupWizard: React.FC = () => {
   const [faviconUrl, setFaviconUrl] = useState(settings.faviconUrl || '');
   
   // Contacts
-  const [phone, setPhone] = useState(settings.phone || '01712345678');
-  const [whatsapp, setWhatsapp] = useState(settings.whatsapp || '01712345678');
-  const [email, setEmail] = useState(settings.email || 'care@pureghor.com');
-  const [addressBn, setAddressBn] = useState(settings.addressBn || 'বিশ্বনাথ, সিলেট, বাংলাদেশ');
+  const [phone, setPhone] = useState(settings.phone || '01754-991822');
+  const [whatsapp, setWhatsapp] = useState(settings.whatsapp || '01754-991822');
+  const [email, setEmail] = useState(settings.email || 'pureghornatural@gmail.com');
+  const [addressBn, setAddressBn] = useState(settings.addressBn || 'লালাবাজার, দক্ষিণ সুরমা, সিলেট। আল বুরাক শপিং সিটি, বিশ্বনাথ');
 
   // Delivery & Theme
   const [deliverySylhet, setDeliverySylhet] = useState(settings.deliveryCharges?.insideSylhet ?? 50);
   const [deliveryDhaka, setDeliveryDhaka] = useState(settings.deliveryCharges?.insideDhaka ?? 80);
   const [deliveryOutside, setDeliveryOutside] = useState(settings.deliveryCharges?.outsideDhaka ?? 130);
   const [freeShippingThreshold, setFreeShippingThreshold] = useState(settings.freeDeliveryThreshold ?? 2000);
-  const [primaryColor, setPrimaryColor] = useState(settings.themeColors?.primaryGreen || '#1F6B45');
-  const [secondaryColor, setSecondaryColor] = useState(settings.themeColors?.deepGreen || '#123B2A');
-  const [accentColor, setAccentColor] = useState(settings.themeColors?.honeyAmber || '#D99A2B');
+  const [primaryColor, setPrimaryColor] = useState(settings.themeColors?.primaryGreen || '#5EB809');
+  const [secondaryColor, setSecondaryColor] = useState(settings.themeColors?.deepGreen || '#004F18');
+  const [accentColor, setAccentColor] = useState(settings.themeColors?.honeyAmber || '#E89D10');
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, target: 'logo' | 'favicon') => {
     const file = e.target.files?.[0];

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Lock, Mail, ArrowRight, ShieldCheck, Sparkles, Key } from 'lucide-react';
 import { loginAdminWithEmail, loginWithGoogle } from '../../services/auth';
 import { useStore } from '../../context/StoreContext';
+import { PureGhorLogo } from '../../components/common/PureGhorLogo';
 
 interface AdminLoginPageProps {
   onSuccess: () => void;
@@ -62,16 +63,16 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onSuccess, onNav
   };
 
   return (
-    <div className="min-h-screen bg-[#123B2A] flex items-center justify-center p-4 font-['Hind_Siliguri']">
-      <div className="w-full max-w-md bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-[#E5E0D5]">
+    <div className="min-h-screen bg-[#004F18] flex items-center justify-center p-4 font-['Hind_Siliguri']">
+      <div className="w-full max-w-md bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-[#DCECD5]">
         
         {/* Header */}
         <div className="text-center mb-6">
-          <div className="w-14 h-14 rounded-2xl bg-[#1F6B45]/10 text-[#1F6B45] flex items-center justify-center mx-auto mb-3">
-            <Lock className="w-7 h-7" />
+          <div className="flex justify-center mb-4">
+            <PureGhorLogo height={46} showSubtitle={true} />
           </div>
-          <h2 className="text-2xl font-black text-[#123B2A] font-['Hind_Siliguri']">
-            এডমিন ড্যাশবোর্ড লগইন
+          <h2 className="text-2xl font-black text-[#004F18] font-['Hind_Siliguri'] mt-2">
+            অ্যাডমিন ড্যাশবোর্ড লগইন
           </h2>
           <p className="text-xs text-gray-500 mt-1">
             {settings.storeNameBn} — স্টোর ম্যানেজমেন্ট পোর্টাল
@@ -95,7 +96,7 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onSuccess, onNav
                 placeholder="admin@pureghor.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-3 pl-9 text-sm outline-none focus:border-[#1F6B45]"
+                className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-3 pl-9 text-sm outline-none focus:border-[#004F18]"
               />
               <Mail className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
             </div>
@@ -110,7 +111,7 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onSuccess, onNav
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-3 pl-9 text-sm outline-none focus:border-[#1F6B45]"
+                className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-3 pl-9 text-sm outline-none focus:border-[#004F18]"
               />
               <Key className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
             </div>
@@ -119,15 +120,15 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onSuccess, onNav
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#1F6B45] hover:bg-[#123B2A] text-white py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md active:scale-98 transition-all cursor-pointer disabled:opacity-50"
+            className="w-full bg-[#004F18] hover:bg-[#063B14] text-white py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md active:scale-98 transition-all cursor-pointer disabled:opacity-50"
           >
             <span>{loading ? 'যাচাই করা হচ্ছে...' : 'লগইন করুন'}</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 text-[#5EB809]" />
           </button>
         </form>
 
         {/* Quick Demo Access Bar */}
-        <div className="mt-6 pt-6 border-t border-[#E5E0D5] space-y-2">
+        <div className="mt-6 pt-6 border-t border-[#DCECD5] space-y-2">
           <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block text-center">
             ডেমো দ্রুত প্রবেশাধিকার (Quick Demo Access)
           </span>
@@ -135,13 +136,13 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onSuccess, onNav
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={handleQuickDemoSuper}
-              className="p-2 rounded-xl bg-[#FFF8EA] hover:bg-[#1F6B45] hover:text-white border border-[#E5E0D5] text-xs font-bold text-[#123B2A] transition-colors cursor-pointer text-center"
+              className="p-2.5 rounded-xl bg-[#F5FBF2] hover:bg-[#004F18] hover:text-white border border-[#DCECD5] text-xs font-bold text-[#004F18] transition-colors cursor-pointer text-center"
             >
               👑 সুপার এডমিন
             </button>
             <button
               onClick={handleQuickDemoManager}
-              className="p-2 rounded-xl bg-[#FFF8EA] hover:bg-[#1F6B45] hover:text-white border border-[#E5E0D5] text-xs font-bold text-[#123B2A] transition-colors cursor-pointer text-center"
+              className="p-2.5 rounded-xl bg-[#F5FBF2] hover:bg-[#004F18] hover:text-white border border-[#DCECD5] text-xs font-bold text-[#004F18] transition-colors cursor-pointer text-center"
             >
               🛡️ স্টোর ম্যানেজার
             </button>
@@ -151,7 +152,7 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onSuccess, onNav
         <div className="mt-6 text-center">
           <button
             onClick={onNavigatePublic}
-            className="text-xs font-bold text-gray-500 hover:text-[#1F6B45]"
+            className="text-xs font-bold text-gray-500 hover:text-[#004F18] transition-colors cursor-pointer"
           >
             &larr; মূল ওয়েবসাইটে ফিরে যান
           </button>

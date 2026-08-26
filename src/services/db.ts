@@ -80,8 +80,8 @@ export async function getStoreSettings(): Promise<StoreSettings> {
       const merged: StoreSettings = {
         ...initialSettings,
         ...data,
-        logoUrl: data.logoUrl || initialSettings.logoUrl,
-        faviconUrl: data.faviconUrl || initialSettings.faviconUrl,
+        logoUrl: (data.logoUrl && !data.logoUrl.includes('1GdN6VsN-EgeAHZ-7MVPfsjsJ9wx7ukjM')) ? data.logoUrl : '/logo.svg',
+        faviconUrl: (data.faviconUrl && !data.faviconUrl.includes('1GdN6VsN-EgeAHZ-7MVPfsjsJ9wx7ukjM')) ? data.faviconUrl : '/favicon.svg',
         themeColors: {
           ...initialSettings.themeColors,
           ...(data.themeColors || {}),
@@ -98,7 +98,8 @@ export async function getStoreSettings(): Promise<StoreSettings> {
     return {
       ...initialSettings,
       ...cached,
-      logoUrl: cached.logoUrl || initialSettings.logoUrl,
+      logoUrl: (cached.logoUrl && !cached.logoUrl.includes('1GdN6VsN-EgeAHZ-7MVPfsjsJ9wx7ukjM')) ? cached.logoUrl : '/logo.svg',
+      faviconUrl: (cached.faviconUrl && !cached.faviconUrl.includes('1GdN6VsN-EgeAHZ-7MVPfsjsJ9wx7ukjM')) ? cached.faviconUrl : '/favicon.svg',
       themeColors: {
         ...initialSettings.themeColors,
         ...(cached.themeColors || {}),

@@ -149,18 +149,18 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
   if (items.length === 0) {
     return (
       <div className="max-w-md mx-auto px-4 py-20 text-center">
-        <div className="w-20 h-20 rounded-full bg-[#1F6B45]/10 flex items-center justify-center text-[#1F6B45] mx-auto mb-4">
+        <div className="w-20 h-20 rounded-full bg-[#E8F8D8] border border-[#5EB809]/30 flex items-center justify-center text-[#004F18] mx-auto mb-4">
           <ShoppingBag className="w-10 h-10" />
         </div>
-        <h2 className="text-xl font-bold text-[#123B2A] mb-2 font-['Hind_Siliguri']">
+        <h2 className="text-xl font-bold text-[#004F18] mb-2 font-['Hind_Siliguri']">
           আপনার কার্ট খালি
         </h2>
-        <p className="text-sm text-gray-500 mb-6 font-['Hind_Siliguri']">
+        <p className="text-sm text-[#102B16]/70 mb-6 font-['Hind_Siliguri']">
           অর্ডার সম্পন্ন করতে আগে কার্টে কিছু পণ্য যোগ করুন।
         </p>
         <button
           onClick={() => onNavigate('/shop')}
-          className="bg-[#1F6B45] text-white px-6 py-3 rounded-full font-bold text-sm"
+          className="bg-[#004F18] hover:bg-[#063B14] text-white px-6 py-3 rounded-full font-bold text-sm cursor-pointer transition-colors"
         >
           শপে ফিরে যান
         </button>
@@ -172,13 +172,13 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
     <div className="py-8 md:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto mb-8">
-        <span className="bg-[#1F6B45]/10 text-[#1F6B45] text-xs font-bold px-3 py-1 rounded-full uppercase">
+        <span className="bg-[#E8F8D8] text-[#004F18] border border-[#5EB809]/30 text-xs font-bold px-3 py-1 rounded-full uppercase">
           নিরাপদ ও দ্রুত চেকআউট
         </span>
-        <h1 className="text-2xl sm:text-3xl font-black text-[#123B2A] font-['Hind_Siliguri'] mt-2">
+        <h1 className="text-2xl sm:text-3xl font-black text-[#004F18] font-['Hind_Siliguri'] mt-2">
           অর্ডার নিশ্চিতকরণ ও ঠিকানা
         </h1>
-        <p className="text-xs sm:text-sm text-gray-500 mt-1 font-['Hind_Siliguri']">
+        <p className="text-xs sm:text-sm text-[#102B16]/70 mt-1 font-['Hind_Siliguri']">
           সঠিক তথ্য দিয়ে ফর্মটি পূরণ করুন, ক্যাশ অন ডেলিভারিতে পণ্য বুঝে পেয়ে টাকা দিন
         </p>
       </div>
@@ -196,9 +196,9 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
         <div className="lg:col-span-7 space-y-6">
           
           {/* Contact Details Card */}
-          <div className="bg-white p-6 rounded-3xl border border-[#E5E0D5] shadow-xs">
-            <h2 className="text-base font-bold text-[#123B2A] font-['Hind_Siliguri'] mb-4 flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-[#1F6B45] text-white text-xs flex items-center justify-center font-bold">
+          <div className="bg-white p-6 rounded-3xl border border-[#DCECD5] shadow-xs">
+            <h2 className="text-base font-bold text-[#004F18] font-['Hind_Siliguri'] mb-4 flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-[#004F18] text-white text-xs flex items-center justify-center font-bold">
                 ১
               </span>
               <span>আপনার যোগাযোগের তথ্য</span>
@@ -206,7 +206,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
 
             <div className="space-y-4 text-sm font-['Hind_Siliguri']">
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-1">
+                <label className="block text-xs font-bold text-[#102B16] mb-1">
                   আপনার নাম (Full Name) <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -215,13 +215,13 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                   placeholder="যেমন: তানভীর আহমেদ"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-3 text-sm outline-none focus:border-[#1F6B45]"
+                  className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-3 text-sm outline-none focus:border-[#004F18]"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 mb-1">
+                  <label className="block text-xs font-bold text-[#102B16] mb-1">
                     মোবাইল নম্বর <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -230,12 +230,12 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                     placeholder="01712345678"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
-                    className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-3 text-sm outline-none focus:border-[#1F6B45]"
+                    className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-3 text-sm outline-none focus:border-[#004F18]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 mb-1">
+                  <label className="block text-xs font-bold text-[#102B16] mb-1">
                     বিকল্প মোবাইল নম্বর (ঐচ্ছিক)
                   </label>
                   <input
@@ -243,7 +243,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                     placeholder="01812345678"
                     value={alternativePhone}
                     onChange={(e) => setAlternativePhone(e.target.value)}
-                    className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-3 text-sm outline-none focus:border-[#1F6B45]"
+                    className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-3 text-sm outline-none focus:border-[#004F18]"
                   />
                 </div>
               </div>
@@ -251,9 +251,9 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
           </div>
 
           {/* Shipping Address Card */}
-          <div className="bg-white p-6 rounded-3xl border border-[#E5E0D5] shadow-xs">
-            <h2 className="text-base font-bold text-[#123B2A] font-['Hind_Siliguri'] mb-4 flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-[#1F6B45] text-white text-xs flex items-center justify-center font-bold">
+          <div className="bg-white p-6 rounded-3xl border border-[#DCECD5] shadow-xs">
+            <h2 className="text-base font-bold text-[#004F18] font-['Hind_Siliguri'] mb-4 flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-[#004F18] text-white text-xs flex items-center justify-center font-bold">
                 ২
               </span>
               <span>ডেলিভারি ঠিকানা</span>
@@ -261,13 +261,13 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
 
             <div className="space-y-4 text-sm font-['Hind_Siliguri']">
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-1">
+                <label className="block text-xs font-bold text-[#102B16] mb-1">
                   জেলা ও ডেলিভারি এরিয়া <span className="text-red-500">*</span>
                 </label>
                 <select
                   value={district}
                   onChange={(e) => handleDistrictChange(e.target.value)}
-                  className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-3 text-sm font-bold text-[#123B2A] outline-none focus:border-[#1F6B45]"
+                  className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-3 text-sm font-bold text-[#004F18] outline-none focus:border-[#004F18]"
                 >
                   {DISTRICT_OPTIONS.map((opt) => (
                     <option key={opt} value={opt}>
@@ -278,7 +278,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-1">
+                <label className="block text-xs font-bold text-[#102B16] mb-1">
                   পূর্ণাঙ্গ ঠিকানা (বাসা নং, রোড, থানা/উপজেলা) <span className="text-red-500">*</span>
                 </label>
                 <textarea
@@ -287,12 +287,12 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                   placeholder="যেমন: বাসা নং ১২, রোড ৩, বিশ্বনাথ, সিলেট।"
                   value={fullAddress}
                   onChange={(e) => setFullAddress(e.target.value)}
-                  className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-3 text-sm outline-none focus:border-[#1F6B45]"
+                  className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-3 text-sm outline-none focus:border-[#004F18]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-1">
+                <label className="block text-xs font-bold text-[#102B16] mb-1">
                   ডেলিভারি নোট / বিশেষ নির্দেশনা (ঐচ্ছিক)
                 </label>
                 <input
@@ -300,16 +300,16 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                   placeholder="যেমন: বিকেলে ডেলিভারি দিলে ভালো হয়"
                   value={deliveryNote}
                   onChange={(e) => setDeliveryNote(e.target.value)}
-                  className="w-full bg-[#FAF6EE] border border-[#E5E0D5] rounded-xl p-3 text-sm outline-none focus:border-[#1F6B45]"
+                  className="w-full bg-[#F5FBF2] border border-[#DCECD5] rounded-xl p-3 text-sm outline-none focus:border-[#004F18]"
                 />
               </div>
             </div>
           </div>
 
           {/* Payment Method Card */}
-          <div className="bg-white p-6 rounded-3xl border border-[#E5E0D5] shadow-xs">
-            <h2 className="text-base font-bold text-[#123B2A] font-['Hind_Siliguri'] mb-4 flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-[#1F6B45] text-white text-xs flex items-center justify-center font-bold">
+          <div className="bg-white p-6 rounded-3xl border border-[#DCECD5] shadow-xs">
+            <h2 className="text-base font-bold text-[#004F18] font-['Hind_Siliguri'] mb-4 flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-[#004F18] text-white text-xs flex items-center justify-center font-bold">
                 ৩
               </span>
               <span>পেমেন্ট পদ্ধতি সিলেক্ট করুন</span>
@@ -319,12 +319,12 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
               <label
                 className={`p-4 rounded-2xl border-2 flex flex-col justify-between cursor-pointer transition-all ${
                   paymentMethod === 'COD'
-                    ? 'border-[#1F6B45] bg-[#FFF8EA]'
-                    : 'border-[#E5E0D5] bg-white hover:border-gray-300'
+                    ? 'border-[#004F18] bg-[#F5FBF2]'
+                    : 'border-[#DCECD5] bg-white hover:border-gray-300'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-black text-sm text-[#123B2A] font-['Hind_Siliguri']">
+                  <span className="font-black text-sm text-[#004F18] font-['Hind_Siliguri']">
                     ক্যাশ অন ডেলিভারি
                   </span>
                   <input
@@ -333,7 +333,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                     value="COD"
                     checked={paymentMethod === 'COD'}
                     onChange={() => setPaymentMethod('COD')}
-                    className="w-4 h-4 text-[#1F6B45]"
+                    className="w-4 h-4 text-[#004F18]"
                   />
                 </div>
                 <span className="text-[11px] text-gray-500">পণ্য হাতে পেয়ে চেক করে টাকা দিন</span>
@@ -343,7 +343,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                 className={`p-4 rounded-2xl border-2 flex flex-col justify-between cursor-pointer transition-all ${
                   paymentMethod === 'bKash'
                     ? 'border-[#E2136E] bg-pink-50/50'
-                    : 'border-[#E5E0D5] bg-white hover:border-gray-300'
+                    : 'border-[#DCECD5] bg-white hover:border-gray-300'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
@@ -364,7 +364,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
                 className={`p-4 rounded-2xl border-2 flex flex-col justify-between cursor-pointer transition-all ${
                   paymentMethod === 'Nagad'
                     ? 'border-[#F7941D] bg-amber-50/50'
-                    : 'border-[#E5E0D5] bg-white hover:border-gray-300'
+                    : 'border-[#DCECD5] bg-white hover:border-gray-300'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
@@ -386,30 +386,30 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
 
         {/* Right: Order Summary Review & Final CTA */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white p-6 rounded-3xl border border-[#E5E0D5] shadow-xs sticky top-28">
-            <h2 className="text-base font-bold text-[#123B2A] font-['Hind_Siliguri'] mb-4 flex items-center justify-between">
+          <div className="bg-white p-6 rounded-3xl border border-[#DCECD5] shadow-xs sticky top-28">
+            <h2 className="text-base font-bold text-[#004F18] font-['Hind_Siliguri'] mb-4 flex items-center justify-between">
               <span>অর্ডারের সারসংক্ষেপ</span>
               <span className="text-xs font-normal text-gray-500">({items.length} টি আইটেম)</span>
             </h2>
 
             {/* Items List */}
-            <div className="divide-y divide-[#E5E0D5]/60 max-h-60 overflow-y-auto mb-4 pr-1">
+            <div className="divide-y divide-[#DCECD5]/60 max-h-60 overflow-y-auto mb-4 pr-1">
               {items.map((item) => (
                 <div key={item.productId} className="py-2.5 flex items-center gap-3">
                   <img
                     src={item.image}
                     alt={item.nameBn}
-                    className="w-12 h-12 rounded-lg object-cover border border-[#E5E0D5]"
+                    className="w-12 h-12 rounded-lg object-cover border border-[#DCECD5]"
                   />
                   <div className="flex-1 min-w-0 text-xs">
-                    <h4 className="font-bold text-[#123B2A] truncate font-['Hind_Siliguri']">
+                    <h4 className="font-bold text-[#004F18] truncate font-['Hind_Siliguri']">
                       {item.nameBn}
                     </h4>
                     <span className="text-gray-400">
                       {item.quantity} × ৳{item.price.toLocaleString()}
                     </span>
                   </div>
-                  <span className="font-black text-xs text-[#1F6B45]">
+                  <span className="font-black text-xs text-[#004F18]">
                     ৳{(item.price * item.quantity).toLocaleString()}
                   </span>
                 </div>
@@ -417,27 +417,27 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
             </div>
 
             {/* Calculations Breakdown */}
-            <div className="space-y-2 text-xs font-medium text-[#26312B]/80 pt-3 border-t border-[#E5E0D5]">
+            <div className="space-y-2 text-xs font-medium text-[#102B16]/80 pt-3 border-t border-[#DCECD5]">
               <div className="flex justify-between">
                 <span>পণ্যের মোট দাম:</span>
-                <span className="font-bold text-[#123B2A]">৳{subtotal.toLocaleString()}</span>
+                <span className="font-bold text-[#004F18]">৳{subtotal.toLocaleString()}</span>
               </div>
               {discount > 0 && (
-                <div className="flex justify-between text-emerald-700 font-bold">
+                <div className="flex justify-between text-[#004F18] font-bold">
                   <span>কুপন ছাড়:</span>
                   <span>-৳{discount.toLocaleString()}</span>
                 </div>
               )}
               <div className="flex justify-between">
                 <span>ডেলিভারি চার্জ:</span>
-                <span className="font-bold text-[#123B2A]">
+                <span className="font-bold text-[#004F18]">
                   {deliveryCharge === 0 ? 'ফ্রি' : `৳${deliveryCharge}`}
                 </span>
               </div>
 
-              <div className="flex justify-between text-lg font-black text-[#123B2A] pt-3 border-t border-[#E5E0D5]">
+              <div className="flex justify-between text-lg font-black text-[#004F18] pt-3 border-t border-[#DCECD5]">
                 <span>সর্বমোট প্রদেয়:</span>
-                <span className="text-[#1F6B45]">৳{grandTotal.toLocaleString()}</span>
+                <span className="text-[#004F18]">৳{grandTotal.toLocaleString()}</span>
               </div>
             </div>
 
@@ -445,20 +445,20 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full mt-6 min-h-[50px] bg-[#1F6B45] hover:bg-[#123B2A] text-white rounded-2xl font-black text-base flex items-center justify-center gap-2 shadow-lg active:scale-98 transition-all cursor-pointer font-['Hind_Siliguri'] disabled:opacity-50"
+              className="w-full mt-6 min-h-[50px] bg-[#004F18] hover:bg-[#063B14] text-white rounded-2xl font-black text-base flex items-center justify-center gap-2 shadow-lg active:scale-98 transition-all cursor-pointer font-['Hind_Siliguri'] disabled:opacity-50"
             >
               {isSubmitting ? (
                 <span>অর্ডার প্রস্তুত হচ্ছে...</span>
               ) : (
                 <>
-                  <CheckCircle2 className="w-5 h-5 text-[#D99A2B]" />
+                  <CheckCircle2 className="w-5 h-5 text-[#5EB809]" />
                   <span>অর্ডার নিশ্চিত করুন (৳{grandTotal.toLocaleString()})</span>
                 </>
               )}
             </button>
 
             <div className="mt-4 flex items-center justify-center gap-2 text-[11px] text-gray-500">
-              <Lock className="w-3.5 h-3.5 text-[#1F6B45]" />
+              <Lock className="w-3.5 h-3.5 text-[#004F18]" />
               <span>আপনার সমস্ত তথ্য শতভাগ সুরক্ষিত</span>
             </div>
           </div>
