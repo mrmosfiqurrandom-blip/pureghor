@@ -46,7 +46,7 @@ export const CategoryTiles: React.FC<CategoryTilesProps> = ({ onNavigate }) => {
   const activeCategories = categories.filter((c) => c.isActive);
 
   return (
-    <section className="py-6 sm:py-8 md:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="categories-section" className="py-6 sm:py-8 md:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header matching the screenshot: Shop by Category */}
       <div className="flex items-center justify-between mb-5 sm:mb-6">
         <div>
