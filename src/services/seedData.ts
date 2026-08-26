@@ -173,12 +173,12 @@ export const initialProducts: Product[] = [
     ],
     images: [
       {
-        url: '/images/pureghor/722119294_1968026900508945_6535640957699175289_n.jpeg',
+        url: '/images/pureghor/778160023_1968999603762127_8330157447235278502_n.jpeg',
         alt: 'খাঁটি কালোজিরা ফুলের মধু - PureGhor',
         isPrimary: true,
       },
       {
-        url: '/images/pureghor/731067967_1165096542480498_5504005484939299210_n.jpeg',
+        url: '/images/pureghor/777916124_1726477055273195_4515666685499235866_n.jpeg',
         alt: 'PureGhor মধু ও নাটস কালেকশন',
       },
     ],
@@ -221,12 +221,12 @@ export const initialProducts: Product[] = [
     ],
     images: [
       {
-        url: '/images/pureghor/731067967_1165096542480498_5504005484939299210_n.jpeg',
+        url: '/images/pureghor/777916124_1726477055273195_4515666685499235866_n.jpeg',
         alt: 'প্রিমিয়াম হানি নাট জার PureGhor',
         isPrimary: true,
       },
       {
-        url: '/images/pureghor/722119294_1968026900508945_6535640957699175289_n.jpeg',
+        url: '/images/pureghor/738465049_1960823601232100_4535246048439465719_n.jpeg',
         alt: 'খাঁটি মধু ও বাদামের মিশ্রণ',
       },
     ],
@@ -309,7 +309,7 @@ export const initialProducts: Product[] = [
     ],
     images: [
       {
-        url: '/images/pureghor/740259912_853043360933083_8062257320957614052_n.jpeg',
+        url: '/images/pureghor/779050252_2644299516029094_7573122435296028448_n.jpeg',
         alt: 'প্রিমিয়াম আখরোট - PureGhor',
         isPrimary: true,
       },
@@ -352,7 +352,7 @@ export const initialProducts: Product[] = [
     ],
     images: [
       {
-        url: '/images/pureghor/757700374_1054100053804163_386722467757915465_n.jpeg',
+        url: '/images/pureghor/740259912_853043360933083_8062257320957614052_n.jpeg',
         alt: 'স্পেশাল ক্রিস্পি চিংড়ি বালাচাও PureGhor',
         isPrimary: true,
       },
@@ -396,7 +396,7 @@ export const initialProducts: Product[] = [
     ],
     images: [
       {
-        url: '/images/pureghor/732103407_2085145489018609_7477184784061194606_n.jpeg',
+        url: '/images/pureghor/778972309_1922577025083385_4765835242500284291_n.jpeg',
         alt: 'প্রকৃতির শক্তিতে জয়েন্টের যত্ন কালোজিরা তেল PureGhor',
         isPrimary: true,
       },
@@ -435,12 +435,12 @@ export const initialProducts: Product[] = [
     unit: 'gm',
     images: [
       {
-        url: '/images/pureghor/778160023_1968999603762127_8330157447235278502_n.jpeg',
+        url: '/images/pureghor/722119294_1968026900508945_6535640957699175289_n.jpeg',
         alt: 'কোয়েকার ওটস পাউচ ৯০০ গ্রাম',
         isPrimary: true,
       },
       {
-        url: '/images/pureghor/778972309_1922577025083385_4765835242500284291_n.jpeg',
+        url: '/images/pureghor/773379069_3439225979589311_6435072898136566028_n.jpeg',
         alt: 'কোয়েকার ওটস কন্টেইনার কালেকশন',
       },
     ],
@@ -478,12 +478,12 @@ export const initialProducts: Product[] = [
     unit: 'gm',
     images: [
       {
-        url: '/images/pureghor/773379069_3439225979589311_6435072898136566028_n.jpeg',
+        url: '/images/pureghor/731111473_1923805098282637_932601733845508970_n.jpeg',
         alt: 'AUSIMEX অস্ট্রেলিয়ান বেবি ওটস ৫০০ গ্রাম',
         isPrimary: true,
       },
       {
-        url: '/images/pureghor/777916124_1726477055273195_4515666685499235866_n.jpeg',
+        url: '/images/pureghor/732597014_2074558540609712_8558507915178937195_n.jpeg',
         alt: 'অর্গানিক ওটস কালেকশন',
       },
     ],
@@ -521,12 +521,12 @@ export const initialProducts: Product[] = [
     unit: 'gm',
     images: [
       {
-        url: '/images/pureghor/779050252_2644299516029094_7573122435296028448_n.jpeg',
+        url: '/images/pureghor/773272133_1401762758532350_450888033961899514_n.jpeg',
         alt: 'হেলথ প্যারাডাইস অর্গানিক বেবি ওটস',
         isPrimary: true,
       },
       {
-        url: '/images/pureghor/777916124_1726477055273195_4515666685499235866_n.jpeg',
+        url: '/images/pureghor/732597014_2074558540609712_8558507915178937195_n.jpeg',
         alt: 'অর্গানিক ওটস প্যাকেজিং',
       },
     ],
@@ -604,12 +604,12 @@ export const initialProducts: Product[] = [
     unit: 'kg',
     images: [
       {
-        url: '/images/pureghor/731111473_1923805098282637_932601733845508970_n.jpeg',
+        url: '/images/pureghor/731067967_1165096542480498_5504005484939299210_n.jpeg',
         alt: 'বাগান থেকে তাজা কাঁচা আম PureGhor',
         isPrimary: true,
       },
       {
-        url: '/images/pureghor/732597014_2074558540609712_8558507915178937195_n.jpeg',
+        url: '/images/pureghor/732103407_2085145489018609_7477184784061194606_n.jpeg',
         alt: 'ফ্রেশ আমের খাঁচা PureGhor',
       },
     ],

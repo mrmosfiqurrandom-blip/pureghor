@@ -33,23 +33,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       {/* 5. Featured All Organic Products Grid */}
       <ProductGridSection onNavigate={onNavigate} />
       
-      {/* 6. Physical Outlets (Lalabazar Main Outlet & Biswanath Shopping City) */}
-      <StoreOutletsSection onNavigate={onNavigate} />
-      
-      {/* 7. Quality Promise & Sourcing Transparency */}
+      {/* 6. Quality Promise & Sourcing Transparency */}
       <QualityPromiseSection onNavigate={onNavigate} />
       
-      {/* 8. Real Product & Sourcing Image Gallery with Zoom */}
+      {/* 7. Real Product & Sourcing Image Gallery with Zoom */}
       <SourcingGallerySection onNavigate={onNavigate} />
       
-      {/* 9. Verified Customer Reviews & Testimonials */}
+      {/* 8. Verified Customer Reviews & Testimonials */}
       <ReviewsSection />
       
-      {/* 10. Frequently Asked Questions */}
+      {/* 9. Frequently Asked Questions */}
       <FAQSection />
 
-      {/* 11. Social Media Video Section at the VERY BOTTOM of Homepage */}
+      {/* 10. Social Media Video Section */}
       <VideoSection onNavigate={onNavigate} />
+
+      {/* 11. Physical Outlets at the VERY BOTTOM (Lalabazar Main Outlet & Biswanath Shopping City) */}
+      <StoreOutletsSection onNavigate={onNavigate} />
     </div>
   );
 };
