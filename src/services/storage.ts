@@ -118,7 +118,7 @@ export async function deleteStorageFile(storagePath: string): Promise<boolean> {
   }
 }
 
-const MEDIA_STORAGE_KEY = 'pg_media_files';
+const MEDIA_STORAGE_KEY = 'pg_v2_media_files';
 
 export function getMediaFiles(): Array<{ id: string; fileName: string; size: number; url: string }> {
   try {
@@ -127,28 +127,76 @@ export function getMediaFiles(): Array<{ id: string; fileName: string; size: num
   } catch (e) {}
   return [
     {
-      id: 'med-1',
-      fileName: 'sundarban_honey.webp',
-      size: 245000,
-      url: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=800&auto=format&fit=crop',
+      id: 'med-upload-3',
+      fileName: 'pureghor_black_seed_honey.jpg',
+      size: 480000,
+      url: '/images/uploaded/img3.jpg',
     },
     {
-      id: 'med-2',
-      fileName: 'mustard_oil.webp',
-      size: 312000,
-      url: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=800&auto=format&fit=crop',
+      id: 'med-upload-4',
+      fileName: 'pureghor_honey_nut_400g.jpg',
+      size: 520000,
+      url: '/images/uploaded/img4.jpg',
     },
     {
-      id: 'med-3',
-      fileName: 'pure_ghee.webp',
-      size: 198000,
-      url: 'https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?q=80&w=800&auto=format&fit=crop',
+      id: 'med-upload-6',
+      fileName: 'pureghor_black_seed_oil_100ml.jpg',
+      size: 450000,
+      url: '/images/uploaded/img6.jpg',
     },
     {
-      id: 'med-4',
-      fileName: 'chia_seeds.webp',
-      size: 165000,
-      url: 'https://images.unsplash.com/photo-1514733670139-4d87a1941d55?q=80&w=800&auto=format&fit=crop',
+      id: 'med-upload-7',
+      fileName: 'pureghor_4jar_nut_seed_combo.jpg',
+      size: 610000,
+      url: '/images/uploaded/img7.jpg',
+    },
+    {
+      id: 'med-upload-8',
+      fileName: 'pureghor_shelled_walnuts_akhrot.jpg',
+      size: 490000,
+      url: '/images/uploaded/img8.jpg',
+    },
+    {
+      id: 'med-upload-9',
+      fileName: 'pureghor_shrimp_balachao_200g.jpg',
+      size: 530000,
+      url: '/images/uploaded/img9.jpg',
+    },
+    {
+      id: 'med-upload-11',
+      fileName: 'pureghor_spanish_olive_oil.jpg',
+      size: 460000,
+      url: '/images/uploaded/img11.jpg',
+    },
+    {
+      id: 'med-upload-5',
+      fileName: 'pureghor_organic_chia_seeds.jpg',
+      size: 410000,
+      url: '/images/uploaded/img5.jpg',
+    },
+    {
+      id: 'med-upload-2',
+      fileName: 'pureghor_hero_slider_banner_1.jpg',
+      size: 780000,
+      url: '/images/uploaded/img2.jpg',
+    },
+    {
+      id: 'med-upload-1',
+      fileName: 'pureghor_hero_slider_banner_2.jpg',
+      size: 750000,
+      url: '/images/uploaded/img1.jpg',
+    },
+    {
+      id: 'med-upload-10',
+      fileName: 'pureghor_offer_discount_banner.jpg',
+      size: 680000,
+      url: '/images/uploaded/img10.jpg',
+    },
+    {
+      id: 'med-upload-12',
+      fileName: 'pureghor_quality_hotline_banner.jpg',
+      size: 720000,
+      url: '/images/uploaded/img12.jpg',
     },
   ];
 }

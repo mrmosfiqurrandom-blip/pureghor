@@ -41,6 +41,16 @@ export function resolveImageUrl(url: string | undefined | null): string {
     return resolveImageUrl(DEFAULT_FALLBACK_IMAGE);
   }
 
+  // Handle Google Drive file URLs (e.g. drive.google.com/file/d/{id}/view, drive.google.com/open?id={id})
+  const driveFileMatch = trimmed.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if (driveFileMatch && driveFileMatch[1]) {
+    return `https://lh3.googleusercontent.com/d/${driveFileMatch[1]}`;
+  }
+  const driveIdMatch = trimmed.match(/drive\.google\.com\/[^\?]*\?[^]*id=([a-zA-Z0-9_-]+)/);
+  if (driveIdMatch && driveIdMatch[1]) {
+    return `https://lh3.googleusercontent.com/d/${driveIdMatch[1]}`;
+  }
+
   // Absolute web URLs (Facebook CDN, Cloudflare, etc.) or Data URLs
   if (
     trimmed.startsWith('http://') ||

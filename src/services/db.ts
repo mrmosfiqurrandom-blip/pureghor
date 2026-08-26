@@ -40,14 +40,14 @@ import {
 } from './seedData';
 
 const LOCAL_STORAGE_KEYS = {
-  SETTINGS: 'pg_store_settings',
-  CATEGORIES: 'pg_categories',
-  PRODUCTS: 'pg_products',
-  BANNERS: 'pg_banners',
+  SETTINGS: 'pg_v2_store_settings',
+  CATEGORIES: 'pg_v2_categories',
+  PRODUCTS: 'pg_v2_products',
+  BANNERS: 'pg_v2_banners',
   ORDERS: 'pg_orders',
-  COUPONS: 'pg_coupons',
-  FAQS: 'pg_faqs',
-  REVIEWS: 'pg_reviews',
+  COUPONS: 'pg_v2_coupons',
+  FAQS: 'pg_v2_faqs',
+  REVIEWS: 'pg_v2_reviews',
   ADMINS: 'pg_admins',
   AUDIT: 'pg_audit',
 };
