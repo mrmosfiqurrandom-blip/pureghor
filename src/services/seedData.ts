@@ -652,7 +652,7 @@ export const initialProducts: Product[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1631709497146-a239ef373cf1?auto=format&fit=crop&w=800&q=80',
+        url: '/images/pureghor/731843570_3182118701988973_854022805183807248_n.jpeg',
         alt: 'দানাদার সোনালী গাওয়া ঘি',
         isPrimary: true,
       },
@@ -696,7 +696,7 @@ export const initialProducts: Product[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=800&q=80',
+        url: '/images/pureghor/772218375_2009050126395720_4862285561095726924_n.jpeg',
         alt: 'কাঠের ঘানির খাঁটি সরিষার তেল কাচের বোতলে',
         isPrimary: true,
       },
@@ -735,7 +735,7 @@ export const initialProducts: Product[] = [
     unit: 'kg',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80',
+        url: '/images/pureghor/772513850_1055475870270979_5142302322816849426_n.jpeg',
         alt: 'যশোরের সুস্বাদু নলেন ঝোলা গুড় মাটির হাঁড়িতে',
         isPrimary: true,
       },
@@ -779,7 +779,7 @@ export const initialProducts: Product[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80',
+        url: '/images/pureghor/757700374_1054100053804163_386722467757915465_n.jpeg',
         alt: 'প্রিমিয়াম ব্ল্যাক চিয়া সিড জারে',
         isPrimary: true,
       },

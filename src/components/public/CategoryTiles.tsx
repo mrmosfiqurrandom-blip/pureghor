@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { useStore } from '../../context/StoreContext';
 import { PlaceholderImage } from '../common/PlaceholderImage';
+import { resolveImageUrl, DEFAULT_FALLBACK_IMAGE } from '../../utils/imageUrl';
 
 interface CategoryTilesProps {
   onNavigate: (path: string) => void;
@@ -43,12 +44,15 @@ export const CategoryTiles: React.FC<CategoryTilesProps> = ({ onNavigate }) => {
             <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden bg-[#F5FBF2] mb-3 group-hover:scale-105 transition-transform duration-200 border border-[#DCECD5]">
               {cat.imageUrl ? (
                 <img
-                  src={cat.imageUrl}
+                  src={resolveImageUrl(cat.imageUrl)}
                   alt={cat.nameBn}
                   className="w-full h-full object-cover"
                   loading="lazy"
                   onError={(e) => {
-                    (e.currentTarget as HTMLElement).style.display = 'none';
+                    const target = e.currentTarget as HTMLImageElement;
+                    if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                      target.src = DEFAULT_FALLBACK_IMAGE;
+                    }
                   }}
                 />
               ) : (
