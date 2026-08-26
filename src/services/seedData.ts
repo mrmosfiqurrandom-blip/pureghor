@@ -131,7 +131,7 @@ export const initialCategories: Category[] = [
     nameEn: 'Date Palm Jaggery',
     slug: 'khejurer-gur',
     descriptionBn: 'যশোরের বিখ্যাত খাঁটি ঝোলা গুড়, নলেন পাটালি ও প্রাকৃতিক মিষ্টি খাবার।',
-    imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80',
+    imageUrl: '/images/pureghor/772513850_1055475870270979_5142302322816849426_n.jpeg',
     displayOrder: 5,
     isActive: true,
     type: 'food',
