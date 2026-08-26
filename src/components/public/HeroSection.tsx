@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Leaf,
   Sprout,
@@ -8,6 +8,9 @@ import {
   Award,
   Headphones,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
+  Sparkles,
 } from 'lucide-react';
 import { resolveImageUrl, DEFAULT_FALLBACK_IMAGE } from '../../utils/imageUrl';
 
@@ -15,7 +18,98 @@ interface HeroSectionProps {
   onNavigate: (path: string) => void;
 }
 
+interface HeroSlide {
+  id: string;
+  image: string;
+  fallback: string;
+  alt: string;
+  badge: string;
+}
+
+const HERO_SLIDES: HeroSlide[] = [
+  {
+    id: 'slide-1',
+    image: '/images/pureghor_store_slide1.png',
+    fallback: '/images/hero_new_upload.png',
+    alt: 'PureGhor Physical Store Outlet & Attendant',
+    badge: 'অরিজিনাল শোরুম ও আউটলেট',
+  },
+  {
+    id: 'slide-2',
+    image: '/images/uploaded/img2.jpg',
+    fallback: '/images/pureghor_store_slide1.png',
+    alt: 'PureGhor ১০০% খাঁটি ও প্রাকৃতিক ফুড',
+    badge: '১০০% প্রাকৃতিক ও অর্গানিক',
+  },
+  {
+    id: 'slide-3',
+    image: '/images/uploaded/img1.jpg',
+    fallback: '/images/pureghor_store_slide1.png',
+    alt: 'PureGhor বিশ্বনাথ ও লালাবাজার আউটলেট',
+    badge: 'সিলেটের বিশ্বস্ত ব্র্যান্ড',
+  },
+  {
+    id: 'slide-4',
+    image: '/images/uploaded/img10.jpg',
+    fallback: '/images/pureghor_store_slide1.png',
+    alt: 'PureGhor প্রিমিয়াম মধু ও ফুড কম্বো',
+    badge: 'স্পেশাল মেগা অফার',
+  },
+  {
+    id: 'slide-5',
+    image: '/images/uploaded/img7.jpg',
+    fallback: '/images/pureghor_store_slide1.png',
+    alt: 'PureGhor ৪ জার এনার্জি বুস্টার কম্বো',
+    badge: 'স্বাস্থ্যকর কম্বো প্যাকেজ',
+  },
+];
+
 export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+
+  // Auto-play interval
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = setInterval(() => {
+      setCurrentSlideIndex((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 4500);
+
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
+  const handleNextSlide = () => {
+    setCurrentSlideIndex((prev) => (prev + 1) % HERO_SLIDES.length);
+  };
+
+  const handlePrevSlide = () => {
+    setCurrentSlideIndex((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    const distance = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 45;
+    if (distance > minSwipeDistance) {
+      handleNextSlide();
+    } else if (distance < -minSwipeDistance) {
+      handlePrevSlide();
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
   const handleCategoriesClick = () => {
     const section = document.getElementById('categories-section');
     if (section) {
@@ -147,33 +241,101 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
 
           </div>
 
-          {/* RIGHT SIDE: Real Store Photograph */}
+          {/* RIGHT SIDE: Interactive Image Slider with Auto-Play & Touch Gestures */}
           <div className="lg:col-span-6 xl:col-span-6 flex items-center justify-center relative">
-            <div className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-md border border-[#DCECD5] bg-white group">
+            <div
+              className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-[#DCECD5] bg-white group select-none"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
               
-              {/* Real Store Photo */}
-              <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10] w-full overflow-hidden">
-                <img
-                  src="/images/pureghor_store_right.png"
-                  alt="PureGhor Physical Store & Attendant"
-                  className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-700 ease-out"
-                  onError={(e) => {
-                    const target = e.currentTarget as HTMLImageElement;
-                    if (target.src !== DEFAULT_FALLBACK_IMAGE) {
-                      target.src = '/images/pureghor_hero_exact.png';
-                    }
-                  }}
-                />
-                
-                {/* Soft left vignette overlay for natural blend on large screens */}
-                <div className="hidden lg:block absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#F5FBF2]/40 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+              {/* Slider Image Container */}
+              <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10] w-full overflow-hidden bg-[#F0F7ED]">
+                {HERO_SLIDES.map((slide, index) => {
+                  const isActive = index === currentSlideIndex;
+                  return (
+                    <div
+                      key={slide.id}
+                      className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                        isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                      }`}
+                    >
+                      <img
+                        src={slide.image}
+                        alt={slide.alt}
+                        className={`w-full h-full object-cover object-center transition-transform duration-700 ease-out ${
+                          isActive ? 'scale-100' : 'scale-105'
+                        }`}
+                        onError={(e) => {
+                          const target = e.currentTarget as HTMLImageElement;
+                          if (target.src !== slide.fallback && slide.fallback) {
+                            target.src = slide.fallback;
+                          } else if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                            target.src = DEFAULT_FALLBACK_IMAGE;
+                          }
+                        }}
+                      />
+
+                      {/* Vignette Overlay */}
+                      <div className="hidden lg:block absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#F5FBF2]/40 to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent pointer-events-none" />
+                    </div>
+                  );
+                })}
               </div>
 
-              {/* Store Identity Mini Badge on bottom corner */}
-              <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-md border border-[#DCECD5] text-[#004F18] px-3 py-1 rounded-full text-xs font-bold shadow-xs flex items-center gap-1.5 font-['Hind_Siliguri']">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#5EB809]" />
-                <span>অরিজিনাল শোরুম ও আউটলেট</span>
+              {/* Active Slide Identity Badge (Bottom Left) */}
+              <div className="absolute bottom-3.5 left-3.5 sm:bottom-4 sm:left-4 z-20 bg-white/95 backdrop-blur-md border border-[#DCECD5] text-[#004F18] px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-bold shadow-md flex items-center gap-2 font-['Hind_Siliguri']">
+                <CheckCircle2 className="w-4 h-4 text-[#5EB809] shrink-0" />
+                <span>{HERO_SLIDES[currentSlideIndex].badge}</span>
+              </div>
+
+              {/* Slider Navigation Arrows (Prev / Next) */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrevSlide();
+                }}
+                className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-full bg-white/90 hover:bg-white text-[#004F18] shadow-md border border-[#DCECD5] flex items-center justify-center opacity-80 group-hover:opacity-100 transition-all cursor-pointer hover:scale-105 active:scale-95"
+                aria-label="Previous Slide"
+              >
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNextSlide();
+                }}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-full bg-white/90 hover:bg-white text-[#004F18] shadow-md border border-[#DCECD5] flex items-center justify-center opacity-80 group-hover:opacity-100 transition-all cursor-pointer hover:scale-105 active:scale-95"
+                aria-label="Next Slide"
+              >
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+
+              {/* Dot Indicators (Bottom Right) */}
+              <div className="absolute bottom-4 right-4 z-20 flex items-center gap-1.5 bg-black/40 backdrop-blur-xs px-2.5 py-1.5 rounded-full">
+                {HERO_SLIDES.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCurrentSlideIndex(index);
+                    }}
+                    className={`transition-all duration-300 rounded-full cursor-pointer ${
+                      index === currentSlideIndex
+                        ? 'w-5 h-2 bg-[#5EB809]'
+                        : 'w-2 h-2 bg-white/70 hover:bg-white'
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
               </div>
 
             </div>
@@ -252,4 +414,5 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
     </section>
   );
 };
+
 
