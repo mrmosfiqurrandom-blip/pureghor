@@ -18,14 +18,14 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   return (
     <div className="space-y-0">
-      {/* 1. Hero Promotional Slider & Value Offer */}
+      {/* 1. Hero Promotional Slider & Stacked Banners */}
       <HeroSection onNavigate={onNavigate} />
       
-      {/* 2. Trust Strip (100% Pure, COD, Safe Food Grade Packaging) */}
-      <TrustStrip />
-      
-      {/* 3. Category Tiles */}
+      {/* 2. Shop by Category Tiles (Directly below Hero) */}
       <CategoryTiles onNavigate={onNavigate} />
+      
+      {/* 3. Trust Strip (100% Pure, COD, Safe Food Grade Packaging) */}
+      <TrustStrip />
       
       {/* 4. Special Offers & Biswanath 10% Discount Promo */}
       <SpecialOffers onNavigate={onNavigate} />

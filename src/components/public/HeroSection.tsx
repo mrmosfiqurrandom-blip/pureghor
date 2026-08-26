@@ -1,149 +1,143 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowRight, ShieldCheck, Sparkles, Award, ChevronLeft, ChevronRight, Store, Flame, HeartHandshake } from 'lucide-react';
-import { useStore } from '../../context/StoreContext';
+import React, { useState, useEffect, useRef } from 'react';
+import { ChevronLeft, ChevronRight, Sparkles, ArrowRight, ShieldCheck, Award, Flame } from 'lucide-react';
 import { resolveImageUrl, DEFAULT_FALLBACK_IMAGE } from '../../utils/imageUrl';
 
 interface HeroSectionProps {
   onNavigate: (path: string) => void;
 }
 
-const HERO_SLIDES = [
+interface HeroSlide {
+  id: string;
+  badge: string;
+  headlineMain: string;
+  headlineHighlight: string;
+  subtitle: string;
+  ctaText: string;
+  targetLink: string;
+  image: string;
+  bgGradient: string;
+  overlayAccent: string;
+}
+
+const HERO_SLIDES: HeroSlide[] = [
   {
-    id: 'slide-biswanath',
-    badge: 'সিলেটের বিখ্যাত ব্র্যান্ড',
-    title: 'PureGhor এখন বিশ্বনাথ আউটলেটে!',
-    subtitle: 'বিশ্বনাথ শাখা উদ্বোধন উপলক্ষে পাচ্ছেন যেকোনো অর্ডারে বিশেষ ১০% অতিরিক্ত ছাড়। কুপন কোড: PURE10',
-    primaryCta: '১০% ছাড়ে শপ করুন',
-    primaryLink: '/shop',
-    secondaryCta: 'আউটলেটের ঠিকানা',
-    secondaryLink: '/about-us',
-    image: '/images/pureghor/701370545_844991221981629_1527727780744872160_n.jpg',
-    tag: 'উদ্বোধনী অফার',
-  },
-  {
-    id: 'slide-store-welcome',
-    badge: 'আমাদের নিজস্ব শোরুম',
-    title: 'আপনারা চলে আসুন পিওর ঘরে',
-    subtitle: 'লালাবাজার ও বিশ্বনাথ আউটলেটে চোখের সামনে দেখে কিনুন খাঁটি মধু, গাওয়া ঘি, ঘানির তেল ও ড্রাই ফ্রুটস।',
-    primaryCta: 'আমাদের পণ্যসমূহ দেখুন',
-    primaryLink: '/shop',
-    secondaryCta: 'শোরুম গ্যালারি',
-    secondaryLink: '/about-us',
-    image: '/images/pureghor/781114770_1579141536992901_5028016013915671066_n.jpeg',
-    tag: 'সরাসরি শোরুম ভিজিট',
-  },
-  {
-    id: 'slide-honey-nut',
-    badge: 'সুপার এনার্জি ফুড',
-    title: 'প্রিমিয়াম হানি নাট ও কালোজিরা ফুলের মধু',
-    subtitle: 'প্রাকৃতিক মধুর সুমিষ্ট স্বাদ এবং কাঠবাদাম, কাজুবাদাম, পেস্তা ও আখরোটের পুষ্টিকর মেলবন্ধন।',
-    primaryCta: 'হানি নাট অর্ডার করুন',
-    primaryLink: '/product/premium-honey-nut-jar',
-    secondaryCta: 'মানের প্রতিশ্রুতি',
-    secondaryLink: '/quality-promise',
-    image: '/images/pureghor/731067967_1165096542480498_5504005484939299210_n.jpeg',
-    tag: '১০০% খাঁটি ও পুষ্টিকর',
+    id: 'slide-booster',
+    badge: '১০০% প্রাকৃতিক ও পুষ্টিকর',
+    headlineMain: 'শারীরিক এনার্জির পাওয়ার বুস্টার',
+    headlineHighlight: 'রসুনজিরা ও হানি নাট',
+    subtitle: 'কালোজিরা ফুলের মধু, কাজু-কাঠবাদাম, পেস্তা ও ভেষজ উপাদানের অতুলনীয় সংমিশ্রণ।',
+    ctaText: 'এখনই অর্ডার করুন',
+    targetLink: '/product/premium-honey-nut-jar',
+    image: '/images/pureghor/777916124_1726477055273195_4515666685499235866_n.jpeg',
+    bgGradient: 'from-[#0B3818] via-[#004F18] to-[#123B19]',
+    overlayAccent: 'bg-[#5EB809]',
   },
   {
     id: 'slide-nut-combo',
     badge: 'মেগা সেভিংস অফার',
-    title: '৪ জার মেগা বাদাম, কিসমিস ও বীজ কম্বো',
-    subtitle: 'কাঠ বাদাম + কাজু বাদাম + গোল্ডেন কিসমিস + কুমড়ো বীজ — টোটাল ১ কেজি প্রিমিয়াম ড্রাই ফ্রুটস প্যাক।',
-    primaryCta: 'কম্বো অফার নিন',
-    primaryLink: '/product/four-jar-nut-seed-combo',
-    secondaryCta: 'সকল কম্বো দেখুন',
-    secondaryLink: '/shop',
+    headlineMain: '৪ জার মেগা বাদাম, কিসমিস ও',
+    headlineHighlight: 'মিষ্টি কুমড়ো বীজ কম্বো',
+    subtitle: 'কাঠবাদাম + কাজুবাদাম + গোল্ডেন কিসমিস + কুমড়ো বীজ — টোটাল ১ কেজি প্রিমিয়াম প্যাক।',
+    ctaText: 'কম্বো অফার নিন',
+    targetLink: '/product/four-jar-nut-seed-combo',
     image: '/images/pureghor/738465049_1960823601232100_4535246048439465719_n.jpeg',
-    tag: '১ কেজি মেগা প্যাক',
+    bgGradient: 'from-[#173812] via-[#004F18] to-[#1B4D20]',
+    overlayAccent: 'bg-[#E89D10]',
+  },
+  {
+    id: 'slide-ghee-mustard',
+    badge: 'ঐতিহ্যবাহী খাঁটি স্বাদ',
+    headlineMain: 'সিরাজগঞ্জের দানাদার গাওয়া ঘি ও',
+    headlineHighlight: 'ঘানির খাঁটি সরিষার তেল',
+    subtitle: 'গাভীর দুধের মাখন থেকে জ্বাল দেওয়া সুগন্ধি ঘি ও কাঠের ঘানিতে প্রথম চাপের তেল।',
+    ctaText: 'ঘি ও তেল দেখুন',
+    targetLink: '/category/ghee-and-oils',
+    image: '/images/pureghor/731843570_3182118701988973_854022805183807248_n.jpeg',
+    bgGradient: 'from-[#0F3517] via-[#004F18] to-[#0A2610]',
+    overlayAccent: 'bg-[#5EB809]',
+  },
+  {
+    id: 'slide-biswanath-opening',
+    badge: 'সিলেটের বিখ্যাত ব্র্যান্ড',
+    headlineMain: 'PureGhor এখন বিশ্বনাথ ও',
+    headlineHighlight: 'লালাবাজার আউটলেটে',
+    subtitle: 'নতুন শাখা উদ্বোধন উপলক্ষে যেকোনো অর্ডারে পাচ্ছেন ১০% বিশেষ ছাড়। কোড: PURE10',
+    ctaText: '১০% ছাড়ে শপ করুন',
+    targetLink: '/shop',
+    image: '/images/pureghor/701370545_844991221981629_1527727780744872160_n.jpg',
+    bgGradient: 'from-[#004F18] via-[#063B14] to-[#01260C]',
+    overlayAccent: 'bg-[#5EB809]',
   },
 ];
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const touchStartX = useRef<number | null>(null);
 
+  // Auto slide interval (pauses on hover)
   useEffect(() => {
-    const timer = setInterval(() => {
+    if (isHovered) return;
+    const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
+    }, 5500);
+    return () => clearInterval(interval);
+  }, [isHovered]);
 
-  const slide = HERO_SLIDES[currentSlide];
+  const handlePrev = () => {
+    setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+  };
+
+  const handleNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+    if (diff > 50) {
+      handleNext();
+    } else if (diff < -50) {
+      handlePrev();
+    }
+    touchStartX.current = null;
+  };
+
+  const activeSlide = HERO_SLIDES[currentSlide];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#004F18] via-[#063b15] to-[#002f0e] text-white py-8 sm:py-12 md:py-16">
-      {/* Subtle Background Pattern */}
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#FFFFFF_1.5px,transparent_1.5px)] [background-size:20px_20px] pointer-events-none" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+    <section className="pt-4 pb-6 sm:pt-6 sm:pb-8 bg-[#F5FBF2]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Main 2-Column Hero Grid Matching the Screenshot */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 items-stretch">
           
-          {/* Left Column: Copy & Interactive Actions */}
-          <div className="lg:col-span-7 space-y-5 text-center lg:text-left">
-            {/* Heritage Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs md:text-sm font-bold text-[#5EB809] border border-white/20 shadow-xs">
-              <Sparkles className="w-4 h-4 text-[#5EB809]" />
-              <span className="text-white">{slide.badge}</span>
-            </div>
-
-            {/* Main Headline */}
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black font-['Hind_Siliguri'] text-white leading-[1.2] tracking-tight transition-all duration-300">
-              {slide.title}
-            </h1>
-
-            {/* Supporting Copy */}
-            <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed font-['Hind_Siliguri']">
-              {slide.subtitle}
-            </p>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-1">
-              <button
-                id="hero-primary-cta"
-                onClick={() => onNavigate(slide.primaryLink)}
-                className="w-full sm:w-auto min-h-[48px] bg-[#5EB809] hover:bg-[#4ea204] text-white px-7 py-3.5 rounded-2xl font-black text-base flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all cursor-pointer font-['Hind_Siliguri']"
+          {/* ================= LEFT: Large Featured Banner Carousel (8 cols) ================= */}
+          <div
+            className="lg:col-span-8 relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-md border border-[#DCECD5] group min-h-[340px] sm:min-h-[380px] md:min-h-[440px] flex flex-col justify-end"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            {/* Background Slides with Fade Transition */}
+            {HERO_SLIDES.map((s, index) => (
+              <div
+                key={s.id}
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                  index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                }`}
               >
-                <span>{slide.primaryCta}</span>
-                <ArrowRight className="w-5 h-5" />
-              </button>
-
-              <button
-                id="hero-secondary-cta"
-                onClick={() => onNavigate(slide.secondaryLink)}
-                className="w-full sm:w-auto min-h-[48px] bg-white/10 hover:bg-white/20 text-white border border-white/20 px-5 py-3.5 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer font-['Hind_Siliguri']"
-              >
-                <Store className="w-4 h-4 text-[#5EB809]" />
-                <span>{slide.secondaryCta}</span>
-              </button>
-            </div>
-
-            {/* Micro proof badges */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 pt-3 text-xs text-white/80 font-medium border-t border-white/10">
-              <div className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#5EB809]" />
-                <span>১০০% রাসায়নিক মুক্ত</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Flame className="w-4 h-4 text-[#E89D10]" />
-                <span>১০% উদ্বোধনী ছাড়</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-[#5EB809]">🚚</span>
-                <span>সারা দেশে ক্যাশ অন ডেলিভারি</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Hero Visual Image Card with Carousel Controls */}
-          <div className="lg:col-span-5 relative flex flex-col items-center">
-            <div className="relative w-full max-w-md bg-white/10 p-3 sm:p-4 rounded-3xl backdrop-blur-md border border-white/20 shadow-2xl overflow-hidden group">
-              
-              {/* Main Visual Image */}
-              <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-inner bg-[#102B16]">
+                {/* Background Image */}
                 <img
-                  src={resolveImageUrl(slide.image)}
-                  alt={slide.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  src={resolveImageUrl(s.image)}
+                  alt={s.headlineMain}
+                  className="w-full h-full object-cover object-center transform scale-100 group-hover:scale-105 transition-transform duration-1000"
                   onError={(e) => {
                     const target = e.currentTarget as HTMLImageElement;
                     if (target.src !== DEFAULT_FALLBACK_IMAGE) {
@@ -151,73 +145,156 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
                     }
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
-                
-                {/* Top Badge */}
-                <div className="absolute top-3 left-3 bg-[#5EB809] text-white text-[11px] font-black px-2.5 py-1 rounded-full shadow-md">
-                  {slide.tag}
-                </div>
+                {/* High Contrast Gradient Overlay for Crisp Bangla Readability */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#003B12]/95 via-[#004F18]/80 to-transparent lg:w-4/5" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent lg:hidden" />
+              </div>
+            ))}
 
-                {/* Bottom Overlay Label */}
-                <div className="absolute bottom-3 left-3 right-3 text-white">
-                  <p className="font-bold text-sm font-['Hind_Siliguri'] line-clamp-1">
-                    {slide.title}
-                  </p>
-                </div>
+            {/* Slide Content Overlay */}
+            <div className="relative z-20 p-5 sm:p-7 md:p-9 max-w-xl text-white">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md border border-white/25 px-3 py-1 rounded-full text-xs font-bold text-[#5EB809] mb-3 shadow-xs">
+                <Sparkles className="w-3.5 h-3.5 text-[#5EB809]" />
+                <span className="text-white font-['Hind_Siliguri']">{activeSlide.badge}</span>
               </div>
 
-              {/* Slider Arrow Controls */}
-              <div className="flex items-center justify-between mt-3 px-1">
-                <div className="flex items-center gap-1.5">
-                  {HERO_SLIDES.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentSlide(idx)}
-                      className={`h-2 rounded-full transition-all cursor-pointer ${
-                        currentSlide === idx ? 'w-6 bg-[#5EB809]' : 'w-2 bg-white/40 hover:bg-white/70'
-                      }`}
-                      aria-label={`Go to slide ${idx + 1}`}
-                    />
-                  ))}
-                </div>
+              {/* Big Bangla Display Headline */}
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-black font-['Hind_Siliguri'] leading-[1.25] tracking-tight text-white mb-2.5 drop-shadow-md">
+                {activeSlide.headlineMain} <br className="hidden sm:inline" />
+                <span className="text-[#5EB809] drop-shadow-sm">{activeSlide.headlineHighlight}</span>
+              </h1>
 
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)}
-                    className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center transition-colors cursor-pointer"
-                    aria-label="Previous slide"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length)}
-                    className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center transition-colors cursor-pointer"
-                    aria-label="Next slide"
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                </div>
+              {/* Subtitle */}
+              <p className="text-xs sm:text-sm md:text-base text-white/90 leading-relaxed font-normal mb-5 max-w-md font-['Hind_Siliguri'] line-clamp-2 sm:line-clamp-none">
+                {activeSlide.subtitle}
+              </p>
+
+              {/* Action Button */}
+              <div className="flex items-center gap-3">
+                <button
+                  id={`hero-slide-btn-${activeSlide.id}`}
+                  onClick={() => onNavigate(activeSlide.targetLink)}
+                  className="bg-[#5EB809] hover:bg-[#4ea204] text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-sm sm:text-base flex items-center gap-2 shadow-lg hover:shadow-xl active:scale-95 transition-all cursor-pointer font-['Hind_Siliguri'] group/btn"
+                >
+                  <span>{activeSlide.ctaText}</span>
+                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </button>
               </div>
             </div>
 
-            {/* Floating Value Card under hero box */}
-            <div className="mt-3 bg-white text-[#004F18] px-4 py-2.5 rounded-2xl shadow-xl border border-[#DCECD5] flex items-center gap-3 w-full max-w-md">
-              <div className="w-9 h-9 rounded-xl bg-[#5EB809] text-white flex items-center justify-center font-black text-xs shrink-0 shadow-xs">
-                ১০%
-              </div>
-              <div className="flex-1">
-                <h4 className="text-xs font-bold font-['Hind_Siliguri'] text-[#004F18]">বিশ্বনাথ শাখা উদ্বোধনী কুপন</h4>
-                <p className="text-[11px] text-[#004F18] font-bold">কুপন কোড: <span className="font-mono bg-[#F5FBF2] px-1.5 py-0.5 rounded border border-[#DCECD5] text-[#004F18]">PURE10</span></p>
-              </div>
-              <button
-                onClick={() => onNavigate('/shop')}
-                className="text-xs bg-[#004F18] hover:bg-[#5EB809] text-white px-3 py-1.5 rounded-xl font-bold transition-colors cursor-pointer shrink-0"
-              >
-                ব্যবহার করুন
-              </button>
+            {/* Prev / Next Circular Navigation Arrow Buttons on Left and Right Edges */}
+            <button
+              onClick={handlePrev}
+              className="absolute left-3 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/85 hover:bg-white text-[#004F18] hover:text-[#5EB809] shadow-lg flex items-center justify-center transition-all cursor-pointer backdrop-blur-xs active:scale-90"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            <button
+              onClick={handleNext}
+              className="absolute right-3 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/85 hover:bg-white text-[#004F18] hover:text-[#5EB809] shadow-lg flex items-center justify-center transition-all cursor-pointer backdrop-blur-xs active:scale-90"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            {/* Slide Indicator Dots at Bottom Center */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+              {HERO_SLIDES.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    currentSlide === idx
+                      ? 'w-6 bg-[#5EB809]'
+                      : 'w-2 bg-white/60 hover:bg-white'
+                  }`}
+                  aria-label={`Slide ${idx + 1}`}
+                />
+              ))}
             </div>
           </div>
+
+
+          {/* ================= RIGHT: Two Stacked Promo Banners (4 cols) ================= */}
+          <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-4 sm:gap-5 justify-between">
+            
+            {/* Top Promo Card: Family Occasion / Spices & Oils */}
+            <div
+              onClick={() => onNavigate('/shop')}
+              className="relative flex-1 rounded-2xl sm:rounded-3xl overflow-hidden shadow-md border border-[#DCECD5] group cursor-pointer min-h-[170px] sm:min-h-[185px] lg:min-h-0 flex flex-col justify-end bg-[#004F18]"
+            >
+              <img
+                src={resolveImageUrl('/images/pureghor/738465049_1960823601232100_4535246048439465719_n.jpeg')}
+                alt="সব আয়োজন পরিবারের সাথে"
+                className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                onError={(e) => {
+                  const target = e.currentTarget as HTMLImageElement;
+                  if (target.src !== DEFAULT_FALLBACK_IMAGE) target.src = DEFAULT_FALLBACK_IMAGE;
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#003B12]/95 via-[#004F18]/60 to-black/10 group-hover:via-[#004F18]/50 transition-colors" />
+
+              {/* Text Badge & Content */}
+              <div className="relative z-10 p-4 sm:p-5 text-white">
+                <div className="inline-flex items-center gap-1 bg-[#E89D10] text-[#102B16] text-[10px] font-black px-2.5 py-0.5 rounded-full mb-1.5 shadow-xs uppercase tracking-wider">
+                  <span>সবসময় সব আয়োজনে</span>
+                </div>
+                <h3 className="font-bold text-base sm:text-lg text-white font-['Hind_Siliguri'] leading-tight mb-1 group-hover:text-[#5EB809] transition-colors">
+                  পরিবারের সাথে খাঁটি মসলা ও তেল
+                </h3>
+                <p className="text-[11px] sm:text-xs text-white/80 line-clamp-1 font-['Hind_Siliguri']">
+                  ১০০% খাঁটি ও অর্গানিক পণ্যের সেরা সমাহার &rarr;
+                </p>
+              </div>
+
+              {/* Quality Seal Badge in Corner */}
+              <div className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-xs">
+                <Award className="w-5 h-5 text-[#5EB809]" />
+              </div>
+            </div>
+
+            {/* Bottom Promo Card: Pure Cow Ghee Everyday */}
+            <div
+              onClick={() => onNavigate('/category/ghee-and-oils')}
+              className="relative flex-1 rounded-2xl sm:rounded-3xl overflow-hidden shadow-md border border-[#DCECD5] group cursor-pointer min-h-[170px] sm:min-h-[185px] lg:min-h-0 flex flex-col justify-end bg-[#0B3512]"
+            >
+              <img
+                src={resolveImageUrl('/images/pureghor/731843570_3182118701988973_854022805183807248_n.jpeg')}
+                alt="আয়োজনে প্রতিদিন খাঁটি গাওয়া ঘি"
+                className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                onError={(e) => {
+                  const target = e.currentTarget as HTMLImageElement;
+                  if (target.src !== DEFAULT_FALLBACK_IMAGE) target.src = DEFAULT_FALLBACK_IMAGE;
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#003B12]/95 via-[#004F18]/60 to-black/10 group-hover:via-[#004F18]/50 transition-colors" />
+
+              {/* Text Badge & Content */}
+              <div className="relative z-10 p-4 sm:p-5 text-white">
+                <div className="inline-flex items-center gap-1 bg-[#5EB809] text-white text-[10px] font-black px-2.5 py-0.5 rounded-full mb-1.5 shadow-xs uppercase tracking-wider">
+                  <span>আয়োজনে প্রতিদিন</span>
+                </div>
+                <h3 className="font-bold text-base sm:text-lg text-white font-['Hind_Siliguri'] leading-tight mb-1 group-hover:text-[#5EB809] transition-colors">
+                  খাঁটি গাওয়া ঘি — প্রিমিয়াম কোয়ালিটি
+                </h3>
+                <p className="text-[11px] sm:text-xs text-white/80 line-clamp-1 font-['Hind_Siliguri']">
+                  সিরাজগঞ্জের ঐতিহ্যবাহী দানাদার গাওয়া ঘি &rarr;
+                </p>
+              </div>
+
+              {/* 100% Pure Seal Badge in Corner */}
+              <div className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-xs">
+                <ShieldCheck className="w-5 h-5 text-[#5EB809]" />
+              </div>
+            </div>
+
+          </div>
+
         </div>
+
       </div>
     </section>
   );

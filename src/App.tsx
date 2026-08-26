@@ -7,6 +7,7 @@ import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
 import { CartDrawer } from './components/common/CartDrawer';
 import { WhatsAppFloatingButton } from './components/common/WhatsAppFloatingButton';
+import { FloatingSideCart } from './components/common/FloatingSideCart';
 
 // Public Pages
 import { HomePage } from './pages/public/HomePage';
@@ -185,6 +186,7 @@ const MainAppContent: React.FC = () => {
       <main className="flex-1">{renderPublicPage()}</main>
       <Footer onNavigate={navigate} />
       <CartDrawer onNavigate={navigate} />
+      <FloatingSideCart />
       <WhatsAppFloatingButton />
     </div>
   );
