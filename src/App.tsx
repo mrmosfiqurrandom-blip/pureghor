@@ -37,19 +37,42 @@ import { AdminMediaLibrary } from './pages/admin/AdminMediaLibrary';
 import { AdminAuditLogs } from './pages/admin/AdminAuditLogs';
 
 // Inner App Content with State-Based Routing
+const getNormalizedPath = (): string => {
+  if (typeof window === 'undefined') return '/';
+  
+  // Check hash route first (e.g., #/shop)
+  if (window.location.hash && window.location.hash.startsWith('#/')) {
+    return window.location.hash.slice(1);
+  }
+
+  // Check search query SPA redirect from 404.html (e.g., ?/shop)
+  if (window.location.search && window.location.search.startsWith('?/')) {
+    return '/' + window.location.search.slice(2).split('&')[0];
+  }
+
+  const fullPath = window.location.pathname || '/';
+  const base = import.meta.env.BASE_URL || '/';
+  
+  if (base !== '/' && base !== './' && fullPath.startsWith(base)) {
+    const stripped = '/' + fullPath.slice(base.length);
+    return stripped || '/';
+  }
+
+  return fullPath;
+};
+
 const MainAppContent: React.FC = () => {
   const { adminUser } = useStore();
 
   // State router
-  const [currentPath, setCurrentPath] = useState<string>('/');
+  const [currentPath, setCurrentPath] = useState<string>(() => getNormalizedPath());
   const [navData, setNavData] = useState<any>(null);
   const [adminTab, setAdminTab] = useState<string>('dashboard');
 
   // Handle browser back/forward buttons
   useEffect(() => {
     const handlePopState = () => {
-      const path = window.location.pathname || '/';
-      setCurrentPath(path);
+      setCurrentPath(getNormalizedPath());
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
@@ -58,7 +81,17 @@ const MainAppContent: React.FC = () => {
   const navigate = (path: string, data?: any) => {
     setCurrentPath(path);
     setNavData(data);
-    window.history.pushState(null, '', path);
+    
+    const base = import.meta.env.BASE_URL || '/';
+    const targetUrl = (base !== '/' && base !== './')
+      ? `${base.replace(/\/$/, '')}${path}`
+      : path;
+
+    try {
+      window.history.pushState(null, '', targetUrl);
+    } catch {
+      // Fallback
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

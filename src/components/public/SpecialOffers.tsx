@@ -2,6 +2,7 @@ import React from 'react';
 import { Flame, Clock, ArrowRight, Sparkles, Tag, CheckCircle2 } from 'lucide-react';
 import { useStore } from '../../context/StoreContext';
 import { ProductCard } from '../common/ProductCard';
+import { resolveImageUrl, DEFAULT_FALLBACK_IMAGE } from '../../utils/imageUrl';
 
 interface SpecialOffersProps {
   onNavigate: (path: string) => void;
@@ -50,9 +51,15 @@ export const SpecialOffers: React.FC<SpecialOffersProps> = ({ onNavigate }) => {
             <div className="md:col-span-5 flex justify-center">
               <div className="relative w-full max-w-sm aspect-16/10 rounded-2xl overflow-hidden shadow-lg border border-white/20">
                 <img
-                  src="/images/pureghor/701370545_844991221981629_1527727780744872160_n.jpg"
+                  src={resolveImageUrl('/images/pureghor/701370545_844991221981629_1527727780744872160_n.jpg')}
                   alt="PureGhor বিশ্বনাথ শাখা উদ্বোধন অফার"
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.currentTarget as HTMLImageElement;
+                    if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                      target.src = DEFAULT_FALLBACK_IMAGE;
+                    }
+                  }}
                 />
               </div>
             </div>

@@ -19,6 +19,7 @@ import { Product, ProductWeightOption } from '../../types';
 import { ProductCard } from '../../components/common/ProductCard';
 import { PlaceholderImage } from '../../components/common/PlaceholderImage';
 import { WhatsAppFloatingButton } from '../../components/common/WhatsAppFloatingButton';
+import { resolveImageUrl, DEFAULT_FALLBACK_IMAGE } from '../../utils/imageUrl';
 
 interface ProductDetailPageProps {
   slug: string;
@@ -134,9 +135,15 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, onNa
           <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-[#F5FBF2] border border-[#DCECD5] group">
             {product.images && product.images[activeImageIndex] ? (
               <img
-                src={product.images[activeImageIndex].url}
+                src={resolveImageUrl(product.images[activeImageIndex].url)}
                 alt={product.images[activeImageIndex].alt || product.nameBn}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                onError={(e) => {
+                  const target = e.currentTarget as HTMLImageElement;
+                  if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                    target.src = DEFAULT_FALLBACK_IMAGE;
+                  }
+                }}
               />
             ) : (
               <PlaceholderImage type="product" text={product.nameBn} />
@@ -162,7 +169,17 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, onNa
                       : 'border-[#DCECD5] opacity-70 hover:opacity-100'
                   }`}
                 >
-                  <img src={img.url} alt={img.alt} className="w-full h-full object-cover" />
+                  <img
+                    src={resolveImageUrl(img.url)}
+                    alt={img.alt}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.currentTarget as HTMLImageElement;
+                      if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                        target.src = DEFAULT_FALLBACK_IMAGE;
+                      }
+                    }}
+                  />
                 </button>
               ))}
             </div>

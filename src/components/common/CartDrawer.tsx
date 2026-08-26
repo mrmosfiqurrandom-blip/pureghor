@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useStore } from '../../context/StoreContext';
+import { resolveImageUrl, DEFAULT_FALLBACK_IMAGE } from '../../utils/imageUrl';
 
 interface CartDrawerProps {
   onNavigate: (path: string) => void;
@@ -135,9 +136,15 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onNavigate }) => {
                   className="bg-[#F5FBF2] p-3 rounded-2xl border border-[#DCECD5] flex gap-3 items-center"
                 >
                   <img
-                    src={item.image}
+                    src={resolveImageUrl(item.image)}
                     alt={item.nameBn}
                     className="w-16 h-16 rounded-xl object-cover border border-[#DCECD5] shrink-0"
+                    onError={(e) => {
+                      const target = e.currentTarget as HTMLImageElement;
+                      if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                        target.src = DEFAULT_FALLBACK_IMAGE;
+                      }
+                    }}
                   />
                   <div className="flex-1 min-w-0">
                     <h4 className="font-bold text-xs sm:text-sm text-[#004F18] truncate">

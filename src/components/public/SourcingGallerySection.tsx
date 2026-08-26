@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Camera, Sparkles, MapPin, ZoomIn, X, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { resolveImageUrl, DEFAULT_FALLBACK_IMAGE } from '../../utils/imageUrl';
 
 interface GalleryItem {
   id: string;
@@ -184,10 +185,16 @@ export const SourcingGallerySection: React.FC<SourcingGallerySectionProps> = ({ 
               {/* Photo Container */}
               <div className="relative aspect-4/3 overflow-hidden bg-stone-100">
                 <img
-                  src={item.imageUrl}
+                  src={resolveImageUrl(item.imageUrl)}
                   alt={item.titleBn}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
+                  onError={(e) => {
+                    const target = e.currentTarget as HTMLImageElement;
+                    if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                      target.src = DEFAULT_FALLBACK_IMAGE;
+                    }
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
@@ -258,9 +265,15 @@ export const SourcingGallerySection: React.FC<SourcingGallerySectionProps> = ({ 
 
             <div className="relative aspect-4/3 max-h-[70vh] bg-black">
               <img
-                src={activeItem.imageUrl}
+                src={resolveImageUrl(activeItem.imageUrl)}
                 alt={activeItem.titleBn}
                 className="w-full h-full object-contain"
+                onError={(e) => {
+                  const target = e.currentTarget as HTMLImageElement;
+                  if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                    target.src = DEFAULT_FALLBACK_IMAGE;
+                  }
+                }}
               />
             </div>
 

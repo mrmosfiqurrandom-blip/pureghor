@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Play, Sparkles, ShieldCheck, ExternalLink, ThumbsUp, Eye, CheckCircle2, Film, Share2, Youtube, Facebook, Video, MessageCircle } from 'lucide-react';
+import { resolveImageUrl, DEFAULT_FALLBACK_IMAGE } from '../../utils/imageUrl';
 
 interface VideoSectionProps {
   onNavigate?: (path: string) => void;
@@ -153,9 +154,15 @@ export const VideoSection: React.FC<VideoSectionProps> = ({ onNavigate }) => {
                   <div className="relative w-full h-full overflow-hidden">
                     {/* High-craft Video Poster */}
                     <img
-                      src={selectedVideo.thumbnailUrl}
+                      src={resolveImageUrl(selectedVideo.thumbnailUrl)}
                       alt={selectedVideo.titleBn}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85"
+                      onError={(e) => {
+                        const target = e.currentTarget as HTMLImageElement;
+                        if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                          target.src = DEFAULT_FALLBACK_IMAGE;
+                        }
+                      }}
                     />
                     
                     {/* Gradient Overlay */}
@@ -259,7 +266,17 @@ export const VideoSection: React.FC<VideoSectionProps> = ({ onNavigate }) => {
                     >
                       {/* Video Thumbnail */}
                       <div className="relative w-20 h-16 rounded-xl overflow-hidden bg-black shrink-0 border border-white/20">
-                        <img src={vid.thumbnailUrl} alt={vid.titleBn} className="w-full h-full object-cover" />
+                        <img
+                          src={resolveImageUrl(vid.thumbnailUrl)}
+                          alt={vid.titleBn}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            const target = e.currentTarget as HTMLImageElement;
+                            if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                              target.src = DEFAULT_FALLBACK_IMAGE;
+                            }
+                          }}
+                        />
                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                           <Play className={`w-5 h-5 ${isCurrent ? 'text-[#5EB809] fill-[#5EB809]' : 'text-white fill-white'}`} />
                         </div>

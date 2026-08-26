@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, ShieldCheck, Sparkles, Award, ChevronLeft, ChevronRight, Store, Flame, HeartHandshake } from 'lucide-react';
 import { useStore } from '../../context/StoreContext';
+import { resolveImageUrl, DEFAULT_FALLBACK_IMAGE } from '../../utils/imageUrl';
 
 interface HeroSectionProps {
   onNavigate: (path: string) => void;
@@ -140,9 +141,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
               {/* Main Visual Image */}
               <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-inner bg-[#102B16]">
                 <img
-                  src={slide.image}
+                  src={resolveImageUrl(slide.image)}
                   alt={slide.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  onError={(e) => {
+                    const target = e.currentTarget as HTMLImageElement;
+                    if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                      target.src = DEFAULT_FALLBACK_IMAGE;
+                    }
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
                 

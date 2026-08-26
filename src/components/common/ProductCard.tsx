@@ -3,6 +3,7 @@ import { ShoppingBag, Star, Zap, Check } from 'lucide-react';
 import { Product, ProductWeightOption } from '../../types';
 import { useCart } from '../../context/CartContext';
 import { PlaceholderImage } from './PlaceholderImage';
+import { resolveImageUrl, DEFAULT_FALLBACK_IMAGE } from '../../utils/imageUrl';
 
 interface ProductCardProps {
   product: Product;
@@ -78,12 +79,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onNavigate })
       <div className="relative aspect-square w-full bg-[#F5FBF2] overflow-hidden">
         {product.images && product.images[0]?.url ? (
           <img
-            src={product.images[0].url}
+            src={resolveImageUrl(product.images[0].url)}
             alt={product.images[0].alt || product.nameBn}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
             onError={(e) => {
-              (e.currentTarget as HTMLElement).style.display = 'none';
+              const target = e.currentTarget as HTMLImageElement;
+              if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                target.src = DEFAULT_FALLBACK_IMAGE;
+              }
             }}
           />
         ) : (

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Clock, Store, CheckCircle2, Navigation, MessageSquare, Sparkles, Eye, X } from 'lucide-react';
+import { resolveImageUrl, DEFAULT_FALLBACK_IMAGE } from '../../utils/imageUrl';
 
 interface StoreOutletsSectionProps {
   onNavigate?: (path: string) => void;
@@ -88,13 +89,19 @@ export const StoreOutletsSection: React.FC<StoreOutletsSectionProps> = ({ onNavi
 
                 {/* Primary Feature Photo */}
                 <div
-                  onClick={() => setSelectedPhoto({ url: outlet.primaryImage, title: outlet.nameBn })}
+                  onClick={() => setSelectedPhoto({ url: resolveImageUrl(outlet.primaryImage), title: outlet.nameBn })}
                   className="relative aspect-16/9 rounded-2xl overflow-hidden cursor-pointer group bg-[#102B16] border border-[#DCECD5]"
                 >
                   <img
-                    src={outlet.primaryImage}
+                    src={resolveImageUrl(outlet.primaryImage)}
                     alt={outlet.nameBn}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      const target = e.currentTarget as HTMLImageElement;
+                      if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                        target.src = DEFAULT_FALLBACK_IMAGE;
+                      }
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs">
@@ -112,10 +119,20 @@ export const StoreOutletsSection: React.FC<StoreOutletsSectionProps> = ({ onNavi
                   {outlet.gallery.map((photo, pIdx) => (
                     <div
                       key={pIdx}
-                      onClick={() => setSelectedPhoto({ url: photo.url, title: photo.title })}
+                      onClick={() => setSelectedPhoto({ url: resolveImageUrl(photo.url), title: photo.title })}
                       className="aspect-square rounded-xl overflow-hidden cursor-pointer border border-[#DCECD5] hover:border-[#5EB809] transition-all hover:scale-105 relative group"
                     >
-                      <img src={photo.url} alt={photo.title} className="w-full h-full object-cover" />
+                      <img
+                        src={resolveImageUrl(photo.url)}
+                        alt={photo.title}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.currentTarget as HTMLImageElement;
+                          if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                            target.src = DEFAULT_FALLBACK_IMAGE;
+                          }
+                        }}
+                      />
                       <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
                     </div>
                   ))}

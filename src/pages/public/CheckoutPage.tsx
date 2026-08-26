@@ -15,6 +15,7 @@ import { useCart } from '../../context/CartContext';
 import { useStore } from '../../context/StoreContext';
 import { createOrderSecure } from '../../services/db';
 import { PaymentMethod } from '../../types';
+import { resolveImageUrl, DEFAULT_FALLBACK_IMAGE } from '../../utils/imageUrl';
 
 interface CheckoutPageProps {
   onNavigate: (path: string, orderData?: any) => void;
@@ -397,9 +398,15 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate }) => {
               {items.map((item) => (
                 <div key={item.productId} className="py-2.5 flex items-center gap-3">
                   <img
-                    src={item.image}
+                    src={resolveImageUrl(item.image)}
                     alt={item.nameBn}
                     className="w-12 h-12 rounded-lg object-cover border border-[#DCECD5]"
+                    onError={(e) => {
+                      const target = e.currentTarget as HTMLImageElement;
+                      if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                        target.src = DEFAULT_FALLBACK_IMAGE;
+                      }
+                    }}
                   />
                   <div className="flex-1 min-w-0 text-xs">
                     <h4 className="font-bold text-[#004F18] truncate font-['Hind_Siliguri']">
